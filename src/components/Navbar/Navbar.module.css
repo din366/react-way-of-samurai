@@ -1,0 +1,13 @@
+.nav {
+  grid-area: nav;
+  background-color: antiquewhite;
+  padding: 10px 20px;
+}
+
+.nav div a {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: #424242;
+}

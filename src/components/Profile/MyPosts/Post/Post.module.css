@@ -1,0 +1,10 @@
+.userImage {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.singlePostWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
