@@ -1,8 +1,0 @@
-.content {
-  grid-area: content;
-  padding: 20px;
-}
-
-.content .contentImage {
-  max-width: 100%;
-}

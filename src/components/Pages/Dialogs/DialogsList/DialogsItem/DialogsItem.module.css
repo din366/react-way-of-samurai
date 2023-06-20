@@ -1,0 +1,15 @@
+.dialogsItem {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.dialogsItem img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.dialogsItem.active {
+  background-color: #fce0c0;
+}

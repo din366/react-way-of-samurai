@@ -1,13 +1,17 @@
 .nav {
   grid-area: nav;
   background-color: antiquewhite;
-  padding: 10px 20px;
+  height: fit-content;
+  min-height: 600px;
 }
 
 .nav div a {
   display: block;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px;
   text-decoration: none;
   color: #424242;
+}
+
+.nav div a.active {
+  background-color: #c2b7a7;
 }

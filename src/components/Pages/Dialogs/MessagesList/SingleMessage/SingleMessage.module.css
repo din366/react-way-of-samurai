@@ -1,0 +1,11 @@
+.message {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.message img {
+  width: 30px;
+  margin-right: 15px;
+}
