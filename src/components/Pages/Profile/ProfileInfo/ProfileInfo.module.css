@@ -1,0 +1,13 @@
+.contentImage {
+  max-width: 100%;
+}
+
+.descriptionBlock{
+  padding: 20px;
+}
+
+.imgBackgroundWrapper{
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+}

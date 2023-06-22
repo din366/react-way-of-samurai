@@ -6,3 +6,56 @@
 .content .contentImage {
   max-width: 100%;
 }
+
+.postsBlock {
+  padding: 20px;
+}
+
+.postsTitle {
+  position: relative;
+  font-size: 20px;
+  width: 30%;
+  display: block;
+  margin-bottom: 15px;
+  padding: 15px 15px 15px 0;
+}
+
+.postsTitle:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  content: '';
+  width: 150px;
+  border-radius: 2px;
+  height: 4px;
+  background: linear-gradient(to left, #f1c387, #ff8f49);
+}
+
+.addPostWrapper{
+  display: block;
+  margin-bottom: 30px;
+}
+
+.textAreaBlock {
+  width: 600px;
+  height: 100px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.addPostButton{
+  display: block;
+  padding: 10px;
+  min-width: 100px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ff8f49;
+  color: white;
+  transition: 0.3s all;
+}
+
+.addPostButton:hover {
+  background-color: #fc5a35;
+}

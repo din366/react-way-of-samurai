@@ -3,11 +3,11 @@ import styles from './Dialogs.module.css';
 import {DialogsList} from "./DialogsList/DialogsList";
 import {MessagesList} from "./MessagesList/MessagesList";
 
-const Dialogs = () => {
+const Dialogs = ({state}) => {
   return (
     <div className={styles.dialogs}>
-      <DialogsList />
-      <MessagesList />
+      <DialogsList dialogsList={state.dialogsList} />
+      <MessagesList dialogsMessages={state.dialogsMessages}/>
     </div>
   );
 };

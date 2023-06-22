@@ -2,7 +2,8 @@
   grid-area: nav;
   background-color: antiquewhite;
   height: fit-content;
-  min-height: 600px;
+  min-height: 580px;
+  border-bottom-right-radius: 30px;
 }
 
 .nav div a {
@@ -12,6 +13,29 @@
   color: #424242;
 }
 
+.nav div a:hover {
+  background-color: #e3d6c3;
+}
+
 .nav div a.active {
   background-color: #c2b7a7;
+}
+
+.nav .lastNavChild {
+  margin-bottom: 30px;
+}
+
+.sidebarFriends {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.onlineTitle{
+  display: block;
+  margin-left: 20px;
+  margin-bottom: 5px;
 }

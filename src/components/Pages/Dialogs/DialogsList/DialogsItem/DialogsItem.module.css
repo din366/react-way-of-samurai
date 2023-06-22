@@ -3,6 +3,12 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  text-decoration: none;
+  color: #333;
+}
+
+.dialogsItem:hover {
+  background-color: #fcf4ec;
 }
 
 .dialogsItem img {
