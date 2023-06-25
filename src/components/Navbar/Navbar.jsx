@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import OnlineFriendsListItem from "./OnlineFriendsListItem/OnlineFriendsListItem";
 
 const Navbar = ({state}) => {
-  console.log(styles.sidebarFriends);
   return (
     <>
       <nav className={styles.nav}>
