@@ -3,16 +3,16 @@ import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 
-const MyPosts = (/*{newPostText, profilePosts, addPost}*/{profilePosts, addPost, updateNewPostText}) => {
+const MyPosts = ({profilePosts, dispatch}) => {
 
   let newPostElement = React.createRef()
   const addMessage = () => {
-    addPost();
+    dispatch({type: 'ADD-POST'});
   }
 
   const onChangeTextArea = () => {
     let text = newPostElement.current.value;
-    updateNewPostText(text);
+    dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
   }
 
   return (
