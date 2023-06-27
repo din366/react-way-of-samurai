@@ -1,3 +1,5 @@
 .messagesList{
   padding: 15px 40px;
+  width: 100%;
+  position: relative;
 }

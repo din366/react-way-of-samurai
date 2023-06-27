@@ -1,18 +1,20 @@
 import React from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../state/state";
+
 
 
 const MyPosts = ({profilePosts, dispatch}) => {
 
   let newPostElement = React.createRef()
   const addMessage = () => {
-    dispatch({type: 'ADD-POST'});
+    dispatch(addPostActionCreator());
   }
 
   const onChangeTextArea = () => {
     let text = newPostElement.current.value;
-    dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+    dispatch(updateNewPostTextActionCreator(text));
   }
 
   return (
