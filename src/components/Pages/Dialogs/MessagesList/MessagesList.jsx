@@ -5,7 +5,7 @@ import AddMessageBlock from "./AddMessageBlock/AddMessageBlock";
 export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea}) => {
   return (
     <div className={styles.messagesList}>
-      {dialogsMessages.map(item => <SingleMessage message={item.message} />)}
+      {dialogsMessages.map(item => <SingleMessage key={Math.random()} message={item.message} />)}
       <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea}/>
     </div>
   );

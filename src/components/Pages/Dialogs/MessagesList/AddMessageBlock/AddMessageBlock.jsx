@@ -1,8 +1,5 @@
 import React from "react";
 import styles from './AddMessageBlock.module.css';
-import {addChatMessageActionCreator, updateChatNewMessageActionCreator} from "../../../../../state/dialogsReducer";
-
-
 
 const AddMessageBlock = ({addChatMessage, onChangeMessageArea}) => {
   console.log(onChangeMessageArea)

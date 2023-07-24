@@ -20,16 +20,21 @@ const initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_CHAT_MESSAGE:
+    case ADD_CHAT_MESSAGE: {
         const newMessage = {
         message: state.sendCurrentMessage,
       }
-      state.dialogsMessages.push(newMessage);
-      state.sendCurrentMessage = '';
-      return state;
+      return {
+        ...state,
+        sendCurrentMessage: '',
+        dialogsMessages: [...state.dialogsMessages, newMessage]
+      };
+    }
     case UPDATE_CHAT_NEW_MESSAGE:
-      state.sendCurrentMessage = action.sendCurrentMessage;
-      return state;
+      return {
+        ...state,
+        sendCurrentMessage: action.sendCurrentMessage,
+      };
     default:
       return state;
   }
