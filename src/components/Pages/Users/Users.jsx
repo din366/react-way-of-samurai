@@ -17,20 +17,32 @@ const Users = ({users, follow, unfollow, setUsers}) => {
 
 
   return (
-    <div>{users.map(user => <div key={user.id}>
-        <div className={styles.leftBlock}>
-          <img className={styles.userImg} src={user.photos.small ?  user.photos.small : defaultImg} alt=""/>
-          {user.followed === true ?
-            <button onClick={() => {unfollow(user.id)}} className={styles.followButton}>Unfollow</button> :
-            <button onClick={() => {follow(user.id)}} className={styles.followButton}>Follow</button>}
-        </div>
-        <div className={styles.rightBlock}>
-          <div className={styles.nameBlockWrapper}>{user.name}</div>
-          <div className={styles.statusBlockWrapper}>{user.status}</div>
-          {/*<div className={styles.countryBlockWrapper}>{user.location.country}, {user.location.city}</div>*/}
-        </div>
+    <>
+      <div>
+        {users.map(user =>
+          <div key={user.id}>
+            <div className={styles.leftBlock}>
+              <img className={styles.userImg} src={user.photos.small ?  user.photos.small : defaultImg} alt=""/>
+              {user.followed === true ?
+                <button onClick={() => {unfollow(user.id)}} className={styles.followButton}>Unfollow</button> :
+                <button onClick={() => {follow(user.id)}} className={styles.followButton}>Follow</button>}
+            </div>
+            <div className={styles.rightBlock}>
+              <div className={styles.nameBlockWrapper}>{user.name}</div>
+              <div className={styles.statusBlockWrapper}>{user.status}</div>
+              {/*<div className={styles.countryBlockWrapper}>{user.location.country}, {user.location.city}</div>*/}
+            </div>
+          </div>
+        )}
       </div>
-    )}</div>
+      <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </div>
+    </>
   )
 }
 
