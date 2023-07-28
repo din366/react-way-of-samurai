@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './DialogsItem.module.css';
-import userDefaultLogo from './user.png'
+import userDefaultLogo from '../../../../Other/user.png'
 import {NavLink} from "react-router-dom";
 
 export const DialogsItem = (props) => {

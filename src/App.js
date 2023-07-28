@@ -2,7 +2,7 @@ import React from "react";
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Pages/Profile/Profile";
+import ProfileContainer from "./components/Pages/ProfileContainer/ProfileContainer";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Music from "./components/Pages/Music/Music";
 import News from "./components/Pages/News/News";
@@ -11,6 +11,7 @@ import DialogsContainer from "./components/Pages/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Pages/Users/UsersContainer";
 
 const App = ({store}) => {
+  window.store = store;
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
@@ -18,7 +19,7 @@ const App = ({store}) => {
         <Navbar state={store.getState().sidebarFriends}/>
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/profile" element={<Profile store={store}/>}/>
+            <Route path="/profile/*" element={<ProfileContainer store={store}/>}/>
             <Route path="/dialogs/*" element={<DialogsContainer store={store}/>}/>
             <Route path="/users/*" element={<UsersContainer />} />
             <Route path="/music" element={<Music />} />
@@ -30,5 +31,7 @@ const App = ({store}) => {
     </BrowserRouter>
   );
 }
+
+
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './Post.module.css';
 import likeImage from './heart-black-shape.png';
-import defaultProfileImage from './../../../Dialogs/DialogsList/DialogsItem/user.png';
+import defaultProfileImage from '../../../../../Other/user.png';
 
 const Post = (props) => {
   return (

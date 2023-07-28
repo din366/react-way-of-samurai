@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './OnlineFriendsListItem.module.css';
-import defaultImage from './../../Pages/Dialogs/DialogsList/DialogsItem/user.png';
+import defaultImage from '../../Other/user.png';
 
 const OnlineFriendsListItem = (props) => {
   return (
