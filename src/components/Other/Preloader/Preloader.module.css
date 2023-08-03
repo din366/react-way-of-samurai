@@ -2,9 +2,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  /*height: 100vh;*/
 }
 
 .preloaderContainer img {
-  width: 250px;
+  max-width: 250px;
 }

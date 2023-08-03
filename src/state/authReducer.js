@@ -1,5 +1,5 @@
 const SET_USER_DATA = 'SET_USER_DATA';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const AUTH_FETCHING_TOGGLE = 'AUTH_FETCHING_TOGGLE';
 
 
 const initialState =  {
@@ -7,20 +7,20 @@ const initialState =  {
   email: null,
   login: null,
   isAuth: false,
+  smallLogo: null,
   isFetching: false,
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_DATA: {
-      console.log(action)
       return {
         ...state,
         isAuth: action.isAuth,
         ...action.data,
       }
     }
-    case TOGGLE_IS_FETCHING: {
+    case AUTH_FETCHING_TOGGLE: {
       return { ...state, isFetching: action.isFetching}
     }
     default:
@@ -28,9 +28,7 @@ const authReducer = (state = initialState, action) => {
   }
 }
 
-export const setAuthUserData = (userId, email, login, isAuth) => {
-  return ({ type: SET_USER_DATA, data: {userId, email, login, isAuth} });
-}
-export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching});
+export const setAuthUserData = (userId, email, login, smallLogo, isAuth) => ({ type: SET_USER_DATA, data: {userId, email, login, smallLogo, isAuth} });
+export const toggleAuthIsFetching = (isFetching) => ({ type: AUTH_FETCHING_TOGGLE, isFetching});
 
 export default authReducer;

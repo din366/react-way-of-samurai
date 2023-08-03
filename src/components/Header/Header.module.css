@@ -1,9 +1,55 @@
 .header {
   grid-area: header;
+  display: flex;
+  justify-content: space-between;
   background-color: #8d8d8d;
   padding: 10px 20px;
 }
 
 .header img {
   width: 55px;
+}
+
+.loginWrapper{
+    /*max-width: 130px;*/
+  display: flex;
+  align-items: center;
+}
+
+.loggedUserWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginLogoWrapper{
+  overflow: hidden;
+  border-radius: 50%;
+  transition: 0.3s all;
+}
+
+.loginLogo{
+  transform: scale(1.2);
+  max-width: 45px;
+}
+
+.loginName{
+  margin-right: 10px;
+  font-size: 22px;
+  color: white;
+  font-weight: 300;
+  transition: 0.3s all;
+}
+
+.loggedUserLink{
+  text-decoration: none;
+  transition: 0.3s all;
+}
+
+.loggedUserLink:hover .loginLogoWrapper {
+  transform: scale(1.1);
+}
+
+.loggedUserLink:hover .loginName {
+  color: #ffdcb8;
 }

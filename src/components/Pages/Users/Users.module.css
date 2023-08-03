@@ -80,6 +80,7 @@
   /*background-color: #ff8f49;
   color: white;*/
   transition: 0.3s all;
+  cursor: pointer;
 }
 
 .buttonsWrapper .followButton {

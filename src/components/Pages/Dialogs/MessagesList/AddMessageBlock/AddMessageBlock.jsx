@@ -2,7 +2,6 @@ import React from "react";
 import styles from './AddMessageBlock.module.css';
 
 const AddMessageBlock = ({addChatMessage, onChangeMessageArea}) => {
-  console.log(onChangeMessageArea)
   const addMessage = () => {
     addChatMessage();
   }

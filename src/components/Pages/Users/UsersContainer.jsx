@@ -6,11 +6,13 @@ import {
   setTotalUsersCount,
   setUsers,
   toggleIsFetching,
+  toggleIsFollowingProgress,
   unfollow
 } from "../../../state/usersReducer";
 import axios from "axios";
 import Users from "./Users/Users";
 import Preloader from "../../Other/Preloader/Preloader";
+import {usersApi} from "../../../api/api";
 
 class UsersApiComponent extends React.Component{
   constructor(props) {
@@ -20,10 +22,11 @@ class UsersApiComponent extends React.Component{
   componentDidMount() {
     this.props.toggleIsFetching(true);
     this.props.setUsers([]);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(res => {
-        this.props.setUsers(res.data.items);
-        this.props.setTotalUsersCount(res.data.totalCount);
+
+    usersApi.getUsers(this.props.currentPage, this.props.pageSize)
+      .then(data => {
+        this.props.setUsers(data.items);
+        this.props.setTotalUsersCount(data.totalCount);
         this.props.toggleIsFetching(false);
       });
   }
@@ -32,9 +35,10 @@ class UsersApiComponent extends React.Component{
     this.props.setCurrentPage(pageNumber);
     this.props.toggleIsFetching(true);
     this.props.setUsers([]);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-      .then(res => {
-        this.props.setUsers(res.data.items)
+
+    usersApi.getUsers(pageNumber, this.props.pageSize)
+      .then(data => {
+        this.props.setUsers(data.items)
         this.props.toggleIsFetching(false);
       });
   }
@@ -72,4 +76,5 @@ export default connect(mapStateToProps, { // Вместо mapDispatchToProps в 
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
+  toggleIsFollowingProgress
 })(UsersApiComponent);
