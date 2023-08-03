@@ -88,6 +88,11 @@
   color: white;
 }
 
+.buttonsWrapper .followButton:disabled {
+  background-color: #facdb2;
+  color: #949494;
+}
+
 .buttonsWrapper .followButton:hover {
   background-color: #fc5a35;
 }
@@ -95,6 +100,11 @@
 .buttonsWrapper .unfollowButton {
   background-color: #c7c7c7;
   color: #171717;
+}
+
+.buttonsWrapper .unfollowButton:disabled {
+  background-color: #ececec;
+  color: #949494;
 }
 
 .buttonsWrapper .unfollowButton:hover {

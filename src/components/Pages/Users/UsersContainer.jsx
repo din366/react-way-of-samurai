@@ -52,7 +52,10 @@ class UsersApiComponent extends React.Component{
                   currentPage={this.props.currentPage}
                   onPageChanged={this.onPageChanged}
                   unfollow={this.props.unfollow}
-                  follow={this.props.follow}/>
+                  follow={this.props.follow}
+                  toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+                  followingInProgress={this.props.isFollowingProgress}
+    />
     </>
   }
 }
@@ -66,6 +69,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    isFollowingProgress: state.usersPage.followingInProgress,
   }
 }
 
@@ -76,5 +80,5 @@ export default connect(mapStateToProps, { // Вместо mapDispatchToProps в 
   setCurrentPage,
   setTotalUsersCount,
   toggleIsFetching,
-  toggleIsFollowingProgress
+  toggleIsFollowingProgress,
 })(UsersApiComponent);

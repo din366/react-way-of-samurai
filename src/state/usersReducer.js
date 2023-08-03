@@ -13,7 +13,7 @@ const initialState =  {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
-  followingInProgress: false,
+  followingInProgress: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -54,7 +54,12 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, isFetching: action.isFetching}
     }
     case TOGGLE_IS_FOLLOWING_PROGRESS: {
-      return { ...state, followingInProgress: action.followingStatus}
+      return {
+        ...state,
+        followingInProgress: action.followingStatus ?
+          [...state.followingInProgress, action.userId] : // if followingStatus true - push user id in array
+          state.followingInProgress.filter(id => id !== action.userId) // create new array and filter so that only the current button is disabled
+      }
     }
     default:
       return state;
@@ -67,6 +72,6 @@ export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalPagesCount) => ({ type: SET_TOTAL_USERS_COUNT, totalPagesCount});
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching});
-export const toggleIsFollowingProgress = (followingStatus) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingStatus});
+export const toggleIsFollowingProgress = (followingStatus, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingStatus, userId});
 
 export default usersReducer;
