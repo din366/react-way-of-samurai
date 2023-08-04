@@ -8,31 +8,22 @@ const axiosCustomInstance = axios.create({
     'API-KEY': '173e7929-a115-44d1-a2e5-6ee5da017136',
   },
 })
-
+// ok
 export const usersApi = {
   getUsers(currentPage = 1, pageSize = 10) {
     return axiosCustomInstance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data);
   },
 
-  followUser(userId ) {
-    return axiosCustomInstance.post(`follow/${userId}`,{},{
-      withCredentials: true,
-      headers: {
-        'API-KEY': '173e7929-a115-44d1-a2e5-6ee5da017136',
-      },
-    }).then(res => res.data.resultCode); // return only result code
+  followUser(userId) {
+    return axiosCustomInstance.post(`follow/${userId}`).then(res => res.data.resultCode); // return only result code
   },
 
-  unfollow(userId) {
-    return axiosCustomInstance.delete(`follow/${userId}`,{
-      withCredentials: true,
-      headers: {
-        'API-KEY': '173e7929-a115-44d1-a2e5-6ee5da017136',
-      },
-    }).then(res => res.data.resultCode); // return only result code
+  unfollowUser(userId) {
+    return axiosCustomInstance.delete(`follow/${userId}`).then(res => res.data.resultCode); // return only result code
   }
 }
 
+// ok
 export const profileApi = {
   getProfile(userId) {
     return axiosCustomInstance.get(`profile/${userId}`).then(res => res.data); // return only user data

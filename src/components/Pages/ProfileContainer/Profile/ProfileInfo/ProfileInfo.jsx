@@ -19,9 +19,6 @@ export const ProfileInfo = ({profile}) => {
   } else {
     return (
       <div className={styles.profileMainWrapper}>
-        {/*<div className={styles.imgBackgroundWrapper}>
-          <img className={styles.contentImage} src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg" alt=""/>
-        </div>*/}
         <div className={styles.leftBlockWrapper}>
           <div className={styles.photoWrapper}>
             <img className={styles.photo} src={profile.photos.large ? profile.photos.large : defaultUser} alt="UserPhoto"/>

@@ -1,18 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
+  getUsers,
   follow,
-  setCurrentPage,
-  setTotalUsersCount,
-  setUsers,
-  toggleIsFetching,
-  toggleIsFollowingProgress,
-  unfollow
+  unfollow,
 } from "../../../state/usersReducer";
-import axios from "axios";
 import Users from "./Users/Users";
 import Preloader from "../../Other/Preloader/Preloader";
-import {usersApi} from "../../../api/api";
 
 class UsersApiComponent extends React.Component{
   constructor(props) {
@@ -20,27 +14,11 @@ class UsersApiComponent extends React.Component{
   }
 
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-    this.props.setUsers([]);
-
-    usersApi.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-        this.props.toggleIsFetching(false);
-      });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true);
-    this.props.setUsers([]);
-
-    usersApi.getUsers(pageNumber, this.props.pageSize)
-      .then(data => {
-        this.props.setUsers(data.items)
-        this.props.toggleIsFetching(false);
-      });
+    this.props.getUsers(pageNumber, this.props.pageSize);
   }
 
   render() {
@@ -76,9 +54,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { // Вместо mapDispatchToProps в connect отдаем объект с action creators
   follow,
   unfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
-  toggleIsFollowingProgress,
+  getUsers,
 })(UsersApiComponent);

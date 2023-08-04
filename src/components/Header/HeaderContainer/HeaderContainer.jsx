@@ -1,25 +1,11 @@
 import React from "react";
 import Header from "../Header";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setAuthUserData, toggleAuthIsFetching} from "../../../state/authReducer";
-import {authApi} from "../../../api/api";
+import {requestAuth} from "../../../state/authReducer";
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleAuthIsFetching(true);
-    authApi.getLoggedInfoUser()
-      .then(data => {
-        if (data.resultCode === 0) {
-          const {id, login, email} = data.data;
-
-          authApi.getLoggedImageUser(id)
-            .then(imageUrl => {
-              this.props.setAuthUserData(id, email, login, imageUrl, true);
-              this.props.toggleAuthIsFetching(false);
-            });
-        };
-      });
+    this.props.requestAuth();
   }
 
   render () {
@@ -35,4 +21,4 @@ const mapStateToProps = (state) => ({
   smallLogo: state.auth.smallLogo,
 });
 
-export default connect(mapStateToProps, {setAuthUserData, toggleAuthIsFetching})(HeaderContainer);
+export default connect(mapStateToProps, {requestAuth})(HeaderContainer);

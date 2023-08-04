@@ -1,3 +1,5 @@
+import {usersApi} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -66,12 +68,52 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const follow = (userId) => ({ type: FOLLOW, userId });
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
+export const successFollow = (userId) => ({ type: FOLLOW, userId });
+export const successUnfollow = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalPagesCount) => ({ type: SET_TOTAL_USERS_COUNT, totalPagesCount});
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleIsFollowingProgress = (followingStatus, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingStatus, userId});
+
+/* for redux thunk */
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    dispatch(setUsers([]));
+    dispatch(setCurrentPage(currentPage));
+
+    usersApi.getUsers(currentPage, pageSize)
+      .then(data => {
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
+        dispatch(toggleIsFetching(false));
+      });
+}
+
+/* for redux thunk */
+export const follow = (userId) => (dispatch) => {
+    dispatch(toggleIsFollowingProgress(true, userId));
+
+    usersApi.followUser(userId)
+      .then(resultCode => {
+        if (resultCode === 0) {
+          dispatch(successFollow(userId))
+        }
+        dispatch(toggleIsFollowingProgress(false, userId));
+      });
+}
+
+/* for redux thunk */
+export const unfollow = (userId) => (dispatch) => {
+    dispatch(toggleIsFollowingProgress(true, userId));
+
+    usersApi.unfollowUser(userId)
+      .then(resultCode => {
+        if (resultCode === 0) {
+          dispatch(successUnfollow(userId));
+        }
+        dispatch(toggleIsFollowingProgress(false, userId));
+      });
+}
 
 export default usersReducer;
