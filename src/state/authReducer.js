@@ -46,6 +46,8 @@ export const requestAuth = () => (dispatch) => {
               dispatch(setAuthUserData(id, email, login, imageUrl, true));
               dispatch(toggleAuthIsFetching(false));
             });
+        } else {
+          dispatch(toggleAuthIsFetching(false));
         };
       });
 }

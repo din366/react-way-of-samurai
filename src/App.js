@@ -9,6 +9,7 @@ import {Settings} from "./components/Pages/Settings/Settings";
 import DialogsContainer from "./components/Pages/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Pages/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer/HeaderContainer";
+import Login from "./components/Login/Login";
 
 const App = ({store}) => {
   window.store = store;
@@ -25,6 +26,7 @@ const App = ({store}) => {
             <Route path="/music" element={<Music />} />
             <Route path="/news" element={<News />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </div>
