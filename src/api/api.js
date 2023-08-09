@@ -27,6 +27,14 @@ export const usersApi = {
 export const profileApi = {
   getProfile(userId) {
     return axiosCustomInstance.get(`profile/${userId}`).then(res => res.data); // return only user data
+  },
+
+  getStatus(userId) {
+    return axiosCustomInstance.get(`profile/status/${userId}`)
+  },
+
+  updateStatus(status) {
+    return axiosCustomInstance.put(`profile/status/`, {status: status})
   }
 }
 

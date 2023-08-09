@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Profile from "./Profile/Profile";
-import {getProfile} from "../../../state/profileReducer";
+import {getProfile, getStatus, updateStatus} from "../../../state/profileReducer";
 import {connect} from "react-redux";
 import {useParams} from "react-router-dom";
 import withAuthRedirect from "../../../hoc/WithAuthRedirect";
@@ -17,16 +17,21 @@ const ProfileContainer = (props) => {
     props.getProfile(userId);
   }, [userId])
 
-  return <Profile profile={props.profile}/>
+  useEffect(() => {
+    props.getStatus(userId);
+  }, [userId])
+
+  return <Profile profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
 }
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   loggedUserId: state.auth.userId,
+  status: state.profilePage.status
 })
 
 export default compose( // for HOC components (create conveyor)
-  connect(mapStateToProps, {getProfile}),
+  connect(mapStateToProps, {getProfile, getStatus, updateStatus}),
   withAuthRedirect,
 )(ProfileContainer)
 

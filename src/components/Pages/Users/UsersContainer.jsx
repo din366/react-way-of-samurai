@@ -7,6 +7,8 @@ import {
 } from "../../../state/usersReducer";
 import Users from "./Users/Users";
 import Preloader from "../../Other/Preloader/Preloader";
+import {compose} from "redux";
+import withAuthRedirect from "../../../hoc/WithAuthRedirect";
 
 class UsersApiComponent extends React.Component{
   constructor(props) {
@@ -51,8 +53,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { // Вместо mapDispatchToProps в connect отдаем объект с action creators
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, { // Вместо mapDispatchToProps в connect отдаем объект с action creators
   follow,
   unfollow,
   getUsers,
-})(UsersApiComponent);
+}),
+)(UsersApiComponent);

@@ -1,8 +1,9 @@
 import React from "react";
 import styles from './ProfileInfo.module.css';
 import defaultUser from '../../../../Other/user.png'
+import ProfileStatus from "./ProfleStatus/ProfileStatus";
 
-export const ProfileInfo = ({profile}) => {
+export const ProfileInfo = ({profile, status, updateStatus}) => {
   const renderContacts = (data) => {
     const sortData = Object.entries(data);
     let createdContactBlock = [];
@@ -30,7 +31,8 @@ export const ProfileInfo = ({profile}) => {
         </div>
         <div className={styles.rightBlockWrapper}>
           <h1 className={styles.UserName}>{profile.fullName}</h1>
-          <span className={styles.userAbout}>{profile.aboutMe}</span>
+          <ProfileStatus status={status} updateStatus={updateStatus}/>
+          <span className={styles.userAbout}>About me: {profile.aboutMe}</span>
 
           {profile.lookingForAJob ?
             <div className={styles.jobBlockWrapper}>
