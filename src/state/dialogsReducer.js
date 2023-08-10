@@ -1,5 +1,4 @@
 const ADD_CHAT_MESSAGE = 'ADD-CHAT-MESSAGE';
-const UPDATE_CHAT_NEW_MESSAGE = 'UPDATE-CHAT-NEW-MESSAGE';
 
 const initialState = {
   dialogsMessages: [
@@ -15,37 +14,26 @@ const initialState = {
     {id: 5, name: 'Maxim'},
     {id: 6, name: 'Andrey'},
   ],
-  sendCurrentMessage: '',
 };
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CHAT_MESSAGE: {
         const newMessage = {
-        message: state.sendCurrentMessage,
+        message: action.message,
       }
       return {
         ...state,
-        sendCurrentMessage: '',
         dialogsMessages: [...state.dialogsMessages, newMessage]
       };
     }
-    case UPDATE_CHAT_NEW_MESSAGE:
-      return {
-        ...state,
-        sendCurrentMessage: action.sendCurrentMessage,
-      };
     default:
       return state;
   }
 }
 
 export const addChatMessageActionCreator = (text) => ({
-  type: ADD_CHAT_MESSAGE, messageText: text
+  type: ADD_CHAT_MESSAGE, message: text
 });
-
-export const updateChatNewMessageActionCreator = (text) => ({
-  type: UPDATE_CHAT_NEW_MESSAGE, sendCurrentMessage: text
-})
 
 export default dialogsReducer;

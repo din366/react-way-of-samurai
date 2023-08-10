@@ -1,0 +1,88 @@
+
+.title {
+  padding: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.formWrapper {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
+
+.inputWrapper{
+  max-width: 330px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.inputWrapper label {
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.inputWrapper label.checkboxLabel{
+  width: auto;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.checkboxWrapper{
+  display: flex;
+  align-items: center;
+}
+
+.checkboxWrapper .checkbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+}
+
+.input {
+  display: block;
+  width: 250px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid gray
+}
+
+.buttonWrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.errorBlock{
+  position: absolute;
+  bottom: 0;
+  transform:  translateX(100%);
+  right: 0;
+  padding: 7px 15px;
+  background-color: #f5f5f7;
+  border-radius: 10px;
+  border-bottom: 3px solid red;
+}
+
+.authButton{
+  padding: 8px 30px;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ff8f49;
+  color: white;
+  transition: 0.3s all;
+}
+
+.authButton:hover {
+  background-color: #fc5a35;
+}
+
+.authButton:disabled {
+  background-color: gray;
+}

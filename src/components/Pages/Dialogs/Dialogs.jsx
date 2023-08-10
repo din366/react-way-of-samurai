@@ -4,14 +4,14 @@ import {DialogsList} from "./DialogsList/DialogsList";
 import {MessagesList} from "./MessagesList/MessagesList";
 import {Navigate} from "react-router-dom";
 
-const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, onChangeMessageArea, isAuth}) => {
+const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth}) => {
 
   if (isAuth === false) return <Navigate to={'/login'}/>
 
   return (
     <div className={styles.dialogs} data-id='23'>
       <DialogsList dialogsList={dialogsList} />
-      <MessagesList dialogsMessages={dialogsMessages} addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea}/>
+      <MessagesList dialogsMessages={dialogsMessages} addChatMessage={addChatMessage}/>
     </div>
   );
 };

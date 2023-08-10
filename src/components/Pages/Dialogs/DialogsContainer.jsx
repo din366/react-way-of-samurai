@@ -13,11 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addChatMessage: () => {
-      dispatch(addChatMessageActionCreator())
-    },
-    onChangeMessageArea: (text) => {
-      dispatch(updateChatNewMessageActionCreator(text))
+    addChatMessage: (message) => {
+      dispatch(addChatMessageActionCreator(message))
     },
   }
 }

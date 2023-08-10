@@ -10,7 +10,7 @@
 }
 
 .AddMessageBlockTextarea{
-  width: calc(100% - 130px);
+  width: calc(100% - 150px);
   height: 18px;
   border: 1px solid #8d8d8d;
   border-radius: 10px;
@@ -41,4 +41,8 @@
 
 .addMessageBlockSendButton:hover {
   background-color: #fc5a35;
+}
+
+.addMessageBlockSendButton:disabled {
+  background-color: gray;
 }
