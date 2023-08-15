@@ -54,7 +54,6 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-  withAuthRedirect,
   connect(mapStateToProps, { // Вместо mapDispatchToProps в connect отдаем объект с action creators
   follow,
   unfollow,

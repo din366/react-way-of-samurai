@@ -2,30 +2,32 @@ import React, {useEffect} from "react";
 import Profile from "./Profile/Profile";
 import {getProfile, getStatus, updateStatus} from "../../../state/profileReducer";
 import {connect} from "react-redux";
-import {useParams} from "react-router-dom";
-import withAuthRedirect from "../../../hoc/WithAuthRedirect";
+import {Navigate, useParams} from "react-router-dom";
 import {compose} from "redux";
 
 const ProfileContainer = (props) => {
   let { userId } = useParams();
-  if (!userId && props.loggedUserId === null) {userId = 2}
+  if (!userId && props.loggedUserId === null) {userId = null}
     else if (!userId && props.loggedUserId) {
      userId = props.loggedUserId;
   }
 
   useEffect(() => {
-    props.getProfile(userId);
+    if (userId !== null) { // Do not send a request to server when the user is not authorized, but came after visiting some user
+      props.getProfile(userId);
+      props.getStatus(userId);
+    }
   }, [userId])
 
-  useEffect(() => {
-    props.getStatus(userId);
-  }, [userId])
-
-  return <Profile profile={props.profile}
-                  status={props.status}
-                  updateStatus={props.updateStatus}
-                  isAuth={props.isAuth}
-                  loggedUserId={props.loggedUserId}/>
+  if (!userId && props.loggedUserId === null) {
+    return <Navigate to={'/login'}/>
+  } else {
+    return <Profile profile={props.profile}
+                    status={props.status}
+                    updateStatus={props.updateStatus}
+                    isAuth={props.isAuth}
+                    loggedUserId={props.loggedUserId}/>
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -37,6 +39,6 @@ const mapStateToProps = (state) => ({
 
 export default compose( // for HOC components (create conveyor)
   connect(mapStateToProps, {getProfile, getStatus, updateStatus}),
-  withAuthRedirect,
+  /*withAuthRedirect,*/
 )(ProfileContainer)
 

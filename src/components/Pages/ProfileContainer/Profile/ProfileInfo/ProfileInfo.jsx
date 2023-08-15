@@ -2,6 +2,7 @@ import React from "react";
 import styles from './ProfileInfo.module.css';
 import defaultUser from '../../../../Other/user.png'
 import ProfileStatus from "./ProfleStatus/ProfileStatus";
+import Preloader from "../../../../Other/Preloader/Preloader";
 
 export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId}) => {
   const renderContacts = (data) => {
@@ -16,7 +17,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
   }
 
   if (!profile) {
-    return <div>Error 500</div>
+    return <div className={styles.preloaderWrapper}><Preloader /></div>
   } else {
     return (
       <div className={styles.profileMainWrapper}>

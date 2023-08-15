@@ -45,21 +45,40 @@ export const errorAuthFetching = (isError, message) => ({type: ERROR_AUTH_FETCHI
 /* for redux thunk */
 export const requestAuth = () => (dispatch) => {
     dispatch(toggleAuthIsFetching(true));
-    authApi.getLoggedInfoUser()
+      return authApi.getLoggedInfoUser()
       .then(data => {
         if (data.resultCode === 0) {
           const {id, login, email} = data.data;
-
-          authApi.getLoggedImageUser(id)
+           return authApi.getLoggedImageUser(id)
             .then(imageUrl => {
               dispatch(setAuthUserData(id, email, login, imageUrl, true));
               dispatch(toggleAuthIsFetching(false));
+              return 1
             });
         } else {
           dispatch(toggleAuthIsFetching(false));
         };
       });
 }
+
+/*export const requestAuth = () => (dispatch) => {
+  dispatch(toggleAuthIsFetching(true));
+  return authApi.getLoggedInfoUser()
+    .then((data) => {
+      if (data.resultCode === 0) {
+        return data;
+      } else {
+        dispatch(toggleAuthIsFetching(false));
+        throw new Error();
+      }
+    }).then((data) => {
+      return {data, imageUrl: authApi.getLoggedImageUser(data.data.id)};
+    }).then((obj) => {
+      dispatch(setAuthUserData(obj.data.data.id, obj.data.data.email, login, obj.imageUrl, true));
+      dispatch(toggleAuthIsFetching(false));
+      return 1;
+    })
+}*/
 
 export const login = (email, password, rememberMe) => dispatch => {
   dispatch(toggleAuthIsFetching(true));
