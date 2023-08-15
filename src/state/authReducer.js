@@ -2,6 +2,7 @@ import {authApi} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const AUTH_FETCHING_TOGGLE = 'AUTH_FETCHING_TOGGLE';
+const ERROR_AUTH_FETCHING = 'ERROR_AUTH_FETCHING';
 
 
 const initialState =  {
@@ -11,6 +12,8 @@ const initialState =  {
   isAuth: false,
   smallLogo: null,
   isFetching: false,
+  errorAuthFetching: false,
+  errorAuthFetchingMessage: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -25,6 +28,10 @@ const authReducer = (state = initialState, action) => {
     case AUTH_FETCHING_TOGGLE: {
       return { ...state, isFetching: action.isFetching}
     }
+    case ERROR_AUTH_FETCHING: {
+      return { ...state, errorAuthFetching: action.data.isError, errorAuthFetchingMessage: action.data.message}
+    }
+
     default:
       return state;
   }
@@ -32,6 +39,8 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, email, login, smallLogo, isAuth) => ({ type: SET_USER_DATA, data: {userId, email, login, smallLogo, isAuth} });
 export const toggleAuthIsFetching = (isFetching) => ({ type: AUTH_FETCHING_TOGGLE, isFetching});
+
+export const errorAuthFetching = (isError, message) => ({type: ERROR_AUTH_FETCHING, data: {isError, message}});
 
 /* for redux thunk */
 export const requestAuth = () => (dispatch) => {
@@ -50,6 +59,32 @@ export const requestAuth = () => (dispatch) => {
           dispatch(toggleAuthIsFetching(false));
         };
       });
+}
+
+export const login = (email, password, rememberMe) => dispatch => {
+  dispatch(toggleAuthIsFetching(true));
+  authApi.login(email, password, rememberMe)
+    .then(res => {
+      if (res.data.resultCode === 0) {
+        dispatch(requestAuth());
+      } else {
+        dispatch(errorAuthFetching(true, res.data.messages.join(', ')));
+        dispatch(setAuthUserData(null, null, null, null, false));
+        dispatch(toggleAuthIsFetching(false));
+        setTimeout(() => {
+          dispatch(errorAuthFetching(false, null));
+        }, 3000)
+      }
+    })
+}
+
+export const logout = () => dispatch => {
+  authApi.logout()
+    .then(res => {
+      if (res.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, null, false));
+      }
+    })
 }
 
 

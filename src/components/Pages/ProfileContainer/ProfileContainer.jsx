@@ -21,13 +21,18 @@ const ProfileContainer = (props) => {
     props.getStatus(userId);
   }, [userId])
 
-  return <Profile profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+  return <Profile profile={props.profile}
+                  status={props.status}
+                  updateStatus={props.updateStatus}
+                  isAuth={props.isAuth}
+                  loggedUserId={props.loggedUserId}/>
 }
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   loggedUserId: state.auth.userId,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  isAuth: state.auth.isAuth,
 })
 
 export default compose( // for HOC components (create conveyor)

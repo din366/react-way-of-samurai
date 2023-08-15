@@ -29,15 +29,14 @@ class ProfileStatus extends React.Component {
       });
     }
   }
-
   render () {
     return <>
       {this.state.editMode === true ?
-        <div>
-          <input onChange={this.onStatusChange} autoFocus={true} onBlur={ this.deactivateEditMode } type="text" value={this.state.status}/>
+        <div className={styles.statusWrapper}>
+          <input className={styles.inputChangeStatus} onChange={this.onStatusChange} autoFocus={true} onBlur={ this.deactivateEditMode } type="text" value={this.state.status}/>
         </div> :
-        <div>
-          <span onClick={ this.activateEditMode }>{this.props.status ? this.props.status : '----'}</span>
+        <div className={styles.statusWrapper}>
+          <span className={styles.status} onClick={ this.activateEditMode }>{this.props.status ? this.props.status : '----'} <span className={styles.editButton}>edit</span></span>
         </div>
       }
     </>

@@ -3,7 +3,7 @@ import styles from './ProfileInfo.module.css';
 import defaultUser from '../../../../Other/user.png'
 import ProfileStatus from "./ProfleStatus/ProfileStatus";
 
-export const ProfileInfo = ({profile, status, updateStatus}) => {
+export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId}) => {
   const renderContacts = (data) => {
     const sortData = Object.entries(data);
     let createdContactBlock = [];
@@ -31,7 +31,12 @@ export const ProfileInfo = ({profile, status, updateStatus}) => {
         </div>
         <div className={styles.rightBlockWrapper}>
           <h1 className={styles.UserName}>{profile.fullName}</h1>
-          <ProfileStatus status={status} updateStatus={updateStatus}/>
+
+          {(isAuth && loggedUserId === profile.userId) ?
+            <ProfileStatus status={status} updateStatus={updateStatus} isAuth={isAuth}/> :
+          <span>{status}</span>}
+
+
           <span className={styles.userAbout}>About me: {profile.aboutMe}</span>
 
           {profile.lookingForAJob ?

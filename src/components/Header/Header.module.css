@@ -7,7 +7,7 @@
 }
 
 .header img {
-  width: 55px;
+  width: 40px;
 }
 
 .loginWrapper{
@@ -23,8 +23,13 @@
 }
 
 .loginLogoWrapper{
-  overflow: hidden;
   border-radius: 50%;
+  transition: 0.3s all;
+  position: relative;
+}
+
+.loginLogoWrapperOverflow {
+  overflow: hidden;
   transition: 0.3s all;
 }
 
@@ -46,10 +51,53 @@
   transition: 0.3s all;
 }
 
-.loggedUserLink:hover .loginLogoWrapper {
+.loggedUserLink:hover .loginLogoWrapperOverflow {
   transform: scale(1.1);
 }
 
 .loggedUserLink:hover .loginName {
   color: #ffdcb8;
+}
+
+.loginButton{
+  color: white;
+  font-size: 17px;
+  font-weight: 300;
+  text-decoration: none;
+  padding: 7px 15px;
+  background-color: #ff8f49;
+  border-radius: 10px;
+  transition: 0.3s all;
+}
+
+.loginButton:hover {
+  background-color: #fc5a35;
+}
+
+.logoutButtonWrapper {
+  position: absolute;
+  bottom: -10px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.logoutButton {
+  color: white;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #464646;
+  text-decoration: none;
+  border: none;
+  display: none;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.loggedUserLink:hover .logoutButton {
+  display: block;
+}
+
+.logoutButton:hover {
+  background-color: #fc5a35;
 }

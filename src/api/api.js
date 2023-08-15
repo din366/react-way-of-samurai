@@ -44,6 +44,14 @@ export const authApi = {
   },
 
   getLoggedImageUser (id) {
-    return axiosCustomInstance.get(`profile/${id}`).then(res => res.data.photos.small) // return only thumbnail url
-  }
+    return axiosCustomInstance.get(`profile/${id}`).then(res => res.data.photos.small); // return only thumbnail url
+  },
+
+  login (email, password, rememberMe) {
+    return axiosCustomInstance.post('auth/login', {email, password, rememberMe}).then(res => res);
+  },
+
+  logout () {
+    return axiosCustomInstance.delete('auth/login');
+  },
 }

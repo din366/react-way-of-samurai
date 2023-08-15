@@ -58,3 +58,7 @@
 .addPostButton:hover {
   background-color: #fc5a35;
 }
+
+.addPostButton:disabled {
+  background-color: gray;
+}
