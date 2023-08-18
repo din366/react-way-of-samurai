@@ -8,7 +8,14 @@ import {
 import Users from "./Users/Users";
 import Preloader from "../../Other/Preloader/Preloader";
 import {compose} from "redux";
-import withAuthRedirect from "../../../hoc/WithAuthRedirect";
+import {
+  getCurrentPageReselect,
+  getPageSizeReselect,
+  getTotalUsersCountReselect,
+  getUsersPageReselect,
+  isFetchingReselect,
+  isFollowingProgressReselect,
+} from "../../../state/selectors/usersSelectors";
 
 class UsersApiComponent extends React.Component{
   constructor(props) {
@@ -44,12 +51,12 @@ class UsersApiComponent extends React.Component{
 /* for UsersApiComponent component store and dispatches (connect UsersApiComponent)*/
 const mapStateToProps = (state) => {
   return {
-    users:state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    isFollowingProgress: state.usersPage.followingInProgress,
+    users: getUsersPageReselect(state),
+    pageSize: getPageSizeReselect(state),
+    totalUsersCount: getTotalUsersCountReselect(state),
+    currentPage: getCurrentPageReselect(state),
+    isFetching: isFetchingReselect(state),
+    isFollowingProgress: isFollowingProgressReselect(state),
   }
 }
 
