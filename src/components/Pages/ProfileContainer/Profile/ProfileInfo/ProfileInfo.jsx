@@ -1,8 +1,8 @@
 import React from "react";
 import styles from './ProfileInfo.module.css';
 import defaultUser from '../../../../Other/user.png'
-import ProfileStatus from "./ProfleStatus/ProfileStatus";
 import Preloader from "../../../../Other/Preloader/Preloader";
+import ProfileStatusWithHooks from "./ProfleStatus/ProfileStatusWithHooks";
 
 export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId}) => {
   const renderContacts = (data) => {
@@ -34,7 +34,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
           <h1 className={styles.UserName}>{profile.fullName}</h1>
 
           {(isAuth && loggedUserId === profile.userId) ?
-            <ProfileStatus status={status} updateStatus={updateStatus} isAuth={isAuth}/> :
+            <ProfileStatusWithHooks status={status} updateStatus={updateStatus} isAuth={isAuth}/> :
           <span>{status}</span>}
 
 
