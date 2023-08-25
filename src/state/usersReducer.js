@@ -1,12 +1,12 @@
 import {usersApi} from "../api/api";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
+const FOLLOW = 'users/FOLLOW';
+const UNFOLLOW = 'users/UNFOLLOW';
+const SET_USERS = 'users/SET_USERS';
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const initialState =  {
   users: [],
@@ -77,43 +77,38 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const toggleIsFollowingProgress = (followingStatus, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingStatus, userId});
 
 /* for redux thunk */
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(setUsers([]));
     dispatch(setCurrentPage(currentPage));
 
-    usersApi.getUsers(currentPage, pageSize)
-      .then(data => {
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsersCount(data.totalCount));
-        dispatch(toggleIsFetching(false));
-      });
+    let data = await usersApi.getUsers(currentPage, pageSize)
+
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
+    dispatch(toggleIsFetching(false));
+}
+
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+  dispatch(toggleIsFollowingProgress(true, userId));
+
+  let resultCode = await apiMethod(userId)
+
+  if (resultCode === 0) {
+    dispatch(actionCreator(userId))
+  }
+
+  dispatch(toggleIsFollowingProgress(false, userId));
 }
 
 /* for redux thunk */
-export const follow = (userId) => (dispatch) => {
-    dispatch(toggleIsFollowingProgress(true, userId));
-
-    usersApi.followUser(userId)
-      .then(resultCode => {
-        if (resultCode === 0) {
-          dispatch(successFollow(userId))
-        }
-        dispatch(toggleIsFollowingProgress(false, userId));
-      });
+export const follow = (userId) => async (dispatch) => {
+  await followUnfollowFlow(dispatch, userId, usersApi.followUser, successFollow);
 }
 
 /* for redux thunk */
-export const unfollow = (userId) => (dispatch) => {
-    dispatch(toggleIsFollowingProgress(true, userId));
-
-    usersApi.unfollowUser(userId)
-      .then(resultCode => {
-        if (resultCode === 0) {
-          dispatch(successUnfollow(userId));
-        }
-        dispatch(toggleIsFollowingProgress(false, userId));
-      });
+export const unfollow = (userId) => async (dispatch) => {
+  await followUnfollowFlow(dispatch, userId, usersApi.unfollowUser, successUnfollow);
 }
 
 export default usersReducer;

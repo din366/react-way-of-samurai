@@ -1,4 +1,4 @@
-const ADD_CHAT_MESSAGE = 'ADD-CHAT-MESSAGE';
+const ADD_CHAT_MESSAGE = 'dialogs/ADD-CHAT-MESSAGE';
 
 const initialState = {
   dialogsMessages: [

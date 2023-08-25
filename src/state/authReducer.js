@@ -1,8 +1,8 @@
 import {authApi} from "../api/api";
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const AUTH_FETCHING_TOGGLE = 'AUTH_FETCHING_TOGGLE';
-const ERROR_AUTH_FETCHING = 'ERROR_AUTH_FETCHING';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
+const AUTH_FETCHING_TOGGLE = 'auth/AUTH_FETCHING_TOGGLE';
+const ERROR_AUTH_FETCHING = 'auth/ERROR_AUTH_FETCHING';
 
 
 const initialState =  {
@@ -45,7 +45,8 @@ export const errorAuthFetching = (isError, message) => ({type: ERROR_AUTH_FETCHI
 /* for redux thunk */
 export const requestAuth = () => (dispatch) => {
     dispatch(toggleAuthIsFetching(true));
-      return authApi.getLoggedInfoUser()
+
+    return authApi.getLoggedInfoUser()
       .then(data => {
         if (data.resultCode === 0) {
           const {id, login, email} = data.data;
@@ -60,50 +61,28 @@ export const requestAuth = () => (dispatch) => {
         };
       });
 }
-
-/*export const requestAuth = () => (dispatch) => {
+export const login = (email, password, rememberMe) => async dispatch => {
   dispatch(toggleAuthIsFetching(true));
-  return authApi.getLoggedInfoUser()
-    .then((data) => {
-      if (data.resultCode === 0) {
-        return data;
-      } else {
-        dispatch(toggleAuthIsFetching(false));
-        throw new Error();
-      }
-    }).then((data) => {
-      return {data, imageUrl: authApi.getLoggedImageUser(data.data.id)};
-    }).then((obj) => {
-      dispatch(setAuthUserData(obj.data.data.id, obj.data.data.email, login, obj.imageUrl, true));
-      dispatch(toggleAuthIsFetching(false));
-      return 1;
-    })
-}*/
+  let res = await authApi.login(email, password, rememberMe);
 
-export const login = (email, password, rememberMe) => dispatch => {
-  dispatch(toggleAuthIsFetching(true));
-  authApi.login(email, password, rememberMe)
-    .then(res => {
-      if (res.data.resultCode === 0) {
-        dispatch(requestAuth());
-      } else {
-        dispatch(errorAuthFetching(true, res.data.messages.join(', ')));
-        dispatch(setAuthUserData(null, null, null, null, false));
-        dispatch(toggleAuthIsFetching(false));
-        setTimeout(() => {
-          dispatch(errorAuthFetching(false, null));
-        }, 3000)
-      }
-    })
+  if (res.data.resultCode === 0) {
+    dispatch(requestAuth());
+  } else {
+    dispatch(errorAuthFetching(true, res.data.messages.join(', ')));
+    dispatch(setAuthUserData(null, null, null, null, false));
+    dispatch(toggleAuthIsFetching(false));
+    setTimeout(() => {
+      dispatch(errorAuthFetching(false, null));
+    }, 3000)
+  }
 }
 
-export const logout = () => dispatch => {
-  authApi.logout()
-    .then(res => {
-      if (res.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, null, false));
-      }
-    })
+export const logout = () => async dispatch => {
+  let res = await authApi.logout();
+
+  if (res.data.resultCode === 0) {
+    dispatch(setAuthUserData(null, null, null, null, false));
+  }
 }
 
 

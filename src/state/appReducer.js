@@ -1,6 +1,6 @@
 import {requestAuth} from "./authReducer";
 
-const SET_INITIALIZED = 'SET_INITIALIZED';
+const SET_INITIALIZED = 'app/SET_INITIALIZED';
 
 const initialState =  {
   initialized: false,
@@ -25,7 +25,6 @@ export const setInitialized = (bool) => ({ type: SET_INITIALIZED, bool });
 export const initializeApp = () => dispatch => {
   let abc = dispatch(requestAuth());
   abc.then((data) => {
-      console.log(data);
       dispatch(setInitialized(true));
     });
 

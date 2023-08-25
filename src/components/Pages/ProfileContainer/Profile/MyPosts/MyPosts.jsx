@@ -3,9 +3,8 @@ import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {Field, Form, Formik} from "formik";
 
-const MyPosts = ({profilePosts, onAddMessage, newPostText}) => {
+const MyPosts = ({profilePosts, onAddMessage}) => {
 
-  let newPostElement = React.createRef()
   const addMessage = (newPostText) => {
     onAddMessage(newPostText);
   }
@@ -35,7 +34,7 @@ const MyPosts = ({profilePosts, onAddMessage, newPostText}) => {
         </Formik>
       </div>
       <div>
-        {profilePosts.map(item => <Post message={item.message} likesCount={item.likesCount} />)}
+        {profilePosts.map(item => <Post key={Math.random()} message={item.message} likesCount={item.likesCount} />)}
       </div>
     </div>
   );
