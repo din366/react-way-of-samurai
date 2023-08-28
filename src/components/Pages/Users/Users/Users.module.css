@@ -9,14 +9,7 @@
   padding: 0 20px;
 }
 
-.userBlock{
-  max-width: 220px;
-  height: 340px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  position: relative;
-}
+
 
 .imgWrapper {
   width: 100%;
