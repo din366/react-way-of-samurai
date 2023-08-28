@@ -1,4 +1,4 @@
-import styles from "../Users/Users.module.css";
+import styles from "../../Pages/Users/Users/Users.module.css";
 import React from "react";
 
 const Paginator = ({totalCount, pageSize, currentPage, onPageChanged}) => {
