@@ -23,7 +23,7 @@
 .userImg{
   width: 100%;
   transform: scale(1.15);
-  transition: transform, 0.3s;
+  transition: 0.3s all;
   margin-bottom: 10px;
 }
 
