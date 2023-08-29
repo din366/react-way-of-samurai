@@ -3,9 +3,9 @@ import {NavLink} from "react-router-dom";
 import defaultImg from "../../../../Other/user-smalled.png";
 import React from "react";
 
-const User = ({user, followingInProgress, follow, unfollow}) => {
+const User = ({user, followingInProgress, follow, unfollow, isAuth}) => {
   return (
-    <div className={styles.userBlock} key={user.id}>
+    <div className={isAuth ? styles.userBlock : styles.userBlockLogout} key={user.id}>
       <div className={styles.imgWrapper}>
         <NavLink to={`/profile/${user.id}`}>
           <img className={styles.userImg} src={user.photos.large ?  user.photos.large : defaultImg} alt=""/>
@@ -15,7 +15,8 @@ const User = ({user, followingInProgress, follow, unfollow}) => {
         <div className={styles.nameBlockWrapper}>{user.name}</div>
         {user.status ? <div className={styles.statusBlockWrapper}><b>status:</b> {user.status}</div> : ''}
       </div>
-      <div className={styles.buttonsWrapper}>
+      {isAuth ?
+        <div className={styles.buttonsWrapper}>
         {user.followed === true ?
           <button disabled={followingInProgress.some(id => user.id === id)}
                   onClick={() => {unfollow(user.id);}}
@@ -23,7 +24,7 @@ const User = ({user, followingInProgress, follow, unfollow}) => {
           <button disabled={followingInProgress.some(id => user.id === id)}
                   onClick={() => {follow(user.id);}}
                   className={styles.followButton}>Follow</button>}
-      </div>
+        </div> : ""}
     </div>
   );
 }

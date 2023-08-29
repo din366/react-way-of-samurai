@@ -18,6 +18,7 @@
   overflow: hidden;
   margin-bottom: 15px;
   border: 1px solid #d2d2d2;
+  position: relative;
 }
 
 .photo {
@@ -35,12 +36,6 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid black;
-}
-
-.contactsBlock{
-  display: block;
-  font-size: 14px;
-  margin-bottom: 3px;
 }
 
 .UserName {
@@ -65,4 +60,49 @@
   width: 100%;
   max-height: 150px;
   text-align: center;
+}
+
+.profileChangePhotoButtonLabel{
+  position: absolute;
+  padding: 10px 0;
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  background-color: gray;
+  color: white;
+  display: none;
+  transition: 0.3s all;
+  z-index: 3;
+}
+
+.photoWrapper:after {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #171717;
+  opacity: 0;
+  z-index: 2;
+  transition: 0.3s all;
+}
+
+.photoWrapper:hover:after {
+  opacity: 0.4;
+}
+
+.photoWrapper:hover .profileChangePhotoButtonLabel {
+  display: block;
+}
+
+.profileChangePhotoButtonLabel:hover {
+  background-color: #fc5a35;
+}
+
+.profileChangePhotoButton{
+  display: none;
 }

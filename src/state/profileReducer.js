@@ -1,8 +1,10 @@
 import {profileApi} from "../api/api";
+import {updateHeaderUserPhoto} from "./authReducer";
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_STATUS = 'profile/SET_STATUS';
+const CHANGE_PHOTO_SUCCESS = 'profile/CHANGE_PHOTO';
 
 const initialState =  {
   posts: [
@@ -33,6 +35,9 @@ const profileReducer = (state = initialState, action) => {
     case SET_STATUS : {
       return { ...state, status: action.status};
     }
+    case CHANGE_PHOTO_SUCCESS : {
+      return { ...state, profile: {...state.profile, photos: action.photo}}
+    }
     default:
       return state;
   }
@@ -43,6 +48,8 @@ export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostTe
 export const setUserProfile = (userId) => ({type: SET_USER_PROFILE, userId})
 
 export const setStatus = (status) => ({ type: SET_STATUS, status});
+
+export const changePhotoSuccess = (photo) => ({ type: CHANGE_PHOTO_SUCCESS, photo})
 
 /* for redux thunk */
 export const getProfile = (userId) => async (dispatch) => {
@@ -61,6 +68,16 @@ export const updateStatus = (status) => async (dispatch) => {
   if (data.data.resultCode === 0) {
     dispatch(setStatus(status));
   }
+}
+
+export const changePhoto = (file) => async (dispatch) => {
+  let responce = await profileApi.savePhoto(file);
+
+  if (responce.data.resultCode === 0) {
+    dispatch(changePhotoSuccess(responce.data.data.photos));
+    dispatch(updateHeaderUserPhoto(responce.data.data.photos.large));
+  }
+
 }
 
 export default profileReducer;

@@ -3,6 +3,7 @@ import {authApi} from "../api/api";
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const AUTH_FETCHING_TOGGLE = 'auth/AUTH_FETCHING_TOGGLE';
 const ERROR_AUTH_FETCHING = 'auth/ERROR_AUTH_FETCHING';
+const UPDATE_HEADER_USER_PHOTO = 'auth/UPDATE_HEADER_USER_PHOTO';
 
 
 const initialState =  {
@@ -31,7 +32,9 @@ const authReducer = (state = initialState, action) => {
     case ERROR_AUTH_FETCHING: {
       return { ...state, errorAuthFetching: action.data.isError, errorAuthFetchingMessage: action.data.message}
     }
-
+    case UPDATE_HEADER_USER_PHOTO: {
+      return { ...state, smallLogo: action.newPhoto}
+    }
     default:
       return state;
   }
@@ -41,6 +44,8 @@ export const setAuthUserData = (userId, email, login, smallLogo, isAuth) => ({ t
 export const toggleAuthIsFetching = (isFetching) => ({ type: AUTH_FETCHING_TOGGLE, isFetching});
 
 export const errorAuthFetching = (isError, message) => ({type: ERROR_AUTH_FETCHING, data: {isError, message}});
+
+export const updateHeaderUserPhoto = (newPhoto) => ({ type: UPDATE_HEADER_USER_PHOTO, newPhoto})
 
 /* for redux thunk */
 export const requestAuth = () => (dispatch) => {

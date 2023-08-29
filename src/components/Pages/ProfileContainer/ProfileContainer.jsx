@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Profile from "./Profile/Profile";
-import {getProfile, getStatus, updateStatus} from "../../../state/profileReducer";
+import {changePhoto, getProfile, getStatus, updateStatus} from "../../../state/profileReducer";
 import {connect} from "react-redux";
 import {Navigate, useParams} from "react-router-dom";
 import {compose} from "redux";
@@ -26,7 +26,8 @@ const ProfileContainer = (props) => {
                     status={props.status}
                     updateStatus={props.updateStatus}
                     isAuth={props.isAuth}
-                    loggedUserId={props.loggedUserId}/>
+                    loggedUserId={props.loggedUserId}
+                    changePhoto={props.changePhoto}/>
   }
 }
 
@@ -38,7 +39,7 @@ const mapStateToProps = (state) => ({
 })
 
 export default compose( // for HOC components (create conveyor)
-  connect(mapStateToProps, {getProfile, getStatus, updateStatus}),
+  connect(mapStateToProps, {getProfile, getStatus, updateStatus, changePhoto}),
   /*withAuthRedirect,*/
 )(ProfileContainer)
 

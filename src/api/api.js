@@ -30,11 +30,17 @@ export const profileApi = {
   },
 
   getStatus(userId) {
-    return axiosCustomInstance.get(`profile/status/${userId}`)
+    return axiosCustomInstance.get(`profile/status/${userId}`);
   },
 
   updateStatus(status) {
-    return axiosCustomInstance.put(`profile/status/`, {status: status})
+    return axiosCustomInstance.put(`profile/status/`, {status: status});
+  },
+
+  savePhoto(file) {
+    const formData = new FormData();
+    formData.append("image", file);
+    return axiosCustomInstance.put(`profile/photo`, formData,{headers: {"Content-Type": "multipart/form-data"}});
   }
 }
 

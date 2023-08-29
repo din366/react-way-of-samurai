@@ -23,7 +23,6 @@
 }
 
 .loginLogoWrapper{
-  border-radius: 50%;
   transition: 0.3s all;
   position: relative;
 }
@@ -31,6 +30,7 @@
 .loginLogoWrapperOverflow {
   overflow: hidden;
   transition: 0.3s all;
+  border-radius: 50%;
 }
 
 .loginLogo{

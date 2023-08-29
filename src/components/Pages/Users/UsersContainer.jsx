@@ -42,6 +42,7 @@ class UsersApiComponent extends React.Component{
                   follow={this.props.follow}
                   toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                   followingInProgress={this.props.isFollowingProgress}
+                  isAuth={this.props.isAuth}
     />
     </>
   }
@@ -57,6 +58,7 @@ const mapStateToProps = (state) => {
     currentPage: getCurrentPageReselect(state),
     isFetching: isFetchingReselect(state),
     isFollowingProgress: isFollowingProgressReselect(state),
+    isAuth: state.auth.isAuth,
   }
 }
 

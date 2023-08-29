@@ -3,17 +3,14 @@ import styles from './ProfileInfo.module.css';
 import defaultUser from '../../../../Other/user.png'
 import Preloader from "../../../../Other/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfleStatus/ProfileStatusWithHooks";
+import ContactBlock from "./ContactsInfoBlock/ContactBlock/ContactBlock";
+import ContactsInfoBlock from "./ContactsInfoBlock/ContactsInfoBlock";
 
-export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId}) => {
-  const renderContacts = (data) => {
-    const sortData = Object.entries(data);
-    let createdContactBlock = [];
-    sortData.map((item) => {
-      if (item[1]) {
-        createdContactBlock.push(<span className={styles.contactsBlock}><b>{item[0]}:</b> {item[1]}</span>)
-      };
-    });
-    return <div>{createdContactBlock}</div>
+export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId, changePhoto}) => {
+  const onChangedPhoto = (e) => {
+    if (e.target.files.length) {
+      changePhoto(e.target.files[0]);
+    }
   }
 
   if (!profile) {
@@ -24,10 +21,15 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
         <div className={styles.leftBlockWrapper}>
           <div className={styles.photoWrapper}>
             <img className={styles.photo} src={profile.photos.large ? profile.photos.large : defaultUser} alt="UserPhoto"/>
+            {(isAuth && loggedUserId === profile.userId) ? <>
+              <label className={styles.profileChangePhotoButtonLabel} htmlFor={"changePhoto"}>Изменить фото</label>
+              <input className={styles.profileChangePhotoButton} id={"changePhoto"} type={"file"} onChange={onChangedPhoto} title={" "} accept={"image/*"}/>
+            </> : ''}
           </div>
+
           <div className={styles.contactsWrapper}>
             <div className={styles.contactsTitle}>Contacts:</div>
-            {renderContacts(profile.contacts)}
+            <ContactsInfoBlock fullContactsArray={profile.contacts} />
           </div>
         </div>
         <div className={styles.rightBlockWrapper}>
