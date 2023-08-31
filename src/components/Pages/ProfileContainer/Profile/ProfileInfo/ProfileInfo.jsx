@@ -3,10 +3,13 @@ import styles from './ProfileInfo.module.css';
 import defaultUser from '../../../../Other/user.png'
 import Preloader from "../../../../Other/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfleStatus/ProfileStatusWithHooks";
-import ContactBlock from "./ContactsInfoBlock/ContactBlock/ContactBlock";
 import ContactsInfoBlock from "./ContactsInfoBlock/ContactsInfoBlock";
+import EditUserProfileModal from "./EditUserProfileModal/EditUserProfileModal";
 
-export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId, changePhoto}) => {
+export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId, changePhoto,
+                              editUserInfo, editUserMode, sendUserDataStatus, setSendUserDataStatus,
+                              setEditUserMode, isGeneralSendUserDataError, isGeneralSendUserDataErrorMessage}) => {
+
   const onChangedPhoto = (e) => {
     if (e.target.files.length) {
       changePhoto(e.target.files[0]);
@@ -18,6 +21,15 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
   } else {
     return (
       <div className={styles.profileMainWrapper}>
+        {(isAuth && loggedUserId === profile.userId && editUserMode) ?
+          <EditUserProfileModal profile={profile}
+                                editUserInfo={editUserInfo}
+                                sendUserDataStatus={sendUserDataStatus}
+                                setEditUserMode={setEditUserMode}
+                                setSendUserDataStatus={setSendUserDataStatus}
+                                isGeneralSendUserDataError={isGeneralSendUserDataError}
+                                isGeneralSendUserDataErrorMessage={isGeneralSendUserDataErrorMessage}/> : ''
+        }
         <div className={styles.leftBlockWrapper}>
           <div className={styles.photoWrapper}>
             <img className={styles.photo} src={profile.photos.large ? profile.photos.large : defaultUser} alt="UserPhoto"/>
@@ -33,6 +45,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
           </div>
         </div>
         <div className={styles.rightBlockWrapper}>
+          {(isAuth && loggedUserId === profile.userId) ? <button className={styles.editButton} onClick={() => {setEditUserMode(true)}}>Редактировать профиль</button> : ''}
           <h1 className={styles.UserName}>{profile.fullName}</h1>
 
           {(isAuth && loggedUserId === profile.userId) ?
@@ -47,7 +60,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
               <span className={styles.jobStatus}><b>Job status:</b> {profile.lookingForAJob === true ? 'В поиске работы' :
               profile.lookingForAJob === false ? 'Уже работаю' :
                 'Не указано'}</span>
-              {profile.lookingForAJobDescription ? <span className={styles.jobDescription}><b>Описание работы:</b> {profile.lookingForAJobDescription}</span> : ''}
+              {profile.lookingForAJobDescription ? <span className={styles.jobDescription}><b>Job info:</b> {profile.lookingForAJobDescription}</span> : ''}
           </div>
             : ''}
 

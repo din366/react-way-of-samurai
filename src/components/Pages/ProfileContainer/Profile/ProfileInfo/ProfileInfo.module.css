@@ -10,6 +10,25 @@
 
 .rightBlockWrapper {
   padding: 20px 20px 20px 0;
+  position: relative;
+}
+
+.editButton {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 10px 20px;
+  background-color: #d7d7d7;
+  border-radius: 10px;
+  border: none;
+  font-size: 13px;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background-color: #ff8f49;
+  color: white;
 }
 
 .photoWrapper{

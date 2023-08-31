@@ -1,6 +1,12 @@
 import React, {useEffect} from "react";
 import Profile from "./Profile/Profile";
-import {changePhoto, getProfile, getStatus, updateStatus} from "../../../state/profileReducer";
+import {
+  changePhoto,
+  editUserInfo, setEditUserMode,
+  getProfile,
+  getStatus, setSendUserDataStatus,
+  updateStatus
+} from "../../../state/profileReducer";
 import {connect} from "react-redux";
 import {Navigate, useParams} from "react-router-dom";
 import {compose} from "redux";
@@ -27,7 +33,14 @@ const ProfileContainer = (props) => {
                     updateStatus={props.updateStatus}
                     isAuth={props.isAuth}
                     loggedUserId={props.loggedUserId}
-                    changePhoto={props.changePhoto}/>
+                    changePhoto={props.changePhoto}
+                    editUserInfo={props.editUserInfo}
+                    editUserMode={props.editUserMode}
+                    sendUserDataStatus={props.sendUserDataStatus}
+                    setSendUserDataStatus={props.setSendUserDataStatus}
+                    setEditUserMode={props.setEditUserMode}
+                    isGeneralSendUserDataError={props.isGeneralSendUserDataError}
+                    isGeneralSendUserDataErrorMessage={props.isGeneralSendUserDataErrorMessage}/>
   }
 }
 
@@ -36,10 +49,16 @@ const mapStateToProps = (state) => ({
   loggedUserId: state.auth.userId,
   status: state.profilePage.status,
   isAuth: state.auth.isAuth,
+  editUserMode: state.profilePage.editUserMode,
+  sendUserDataStatus: state.profilePage.sendUserDataStatus,
+  isGeneralSendUserDataError: state.profilePage.isGeneralSendUserDataError,
+  isGeneralSendUserDataErrorMessage: state.profilePage.isGeneralSendUserDataErrorMessage,
 })
 
 export default compose( // for HOC components (create conveyor)
-  connect(mapStateToProps, {getProfile, getStatus, updateStatus, changePhoto}),
+  connect(mapStateToProps, {getProfile,
+    getStatus, updateStatus, changePhoto, editUserInfo,
+    setEditUserMode, setSendUserDataStatus}),
   /*withAuthRedirect,*/
 )(ProfileContainer)
 

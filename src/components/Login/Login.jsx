@@ -7,8 +7,8 @@ import {login, logout} from "../../state/authReducer";
 import {Navigate} from "react-router-dom";
 import Preloader from "../Other/Preloader/Preloader";
 
-const Login = ({login, isAuth, isFetching, isError, errorMessage}) => {
-
+const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) => {
+  console.log(FormData.captcha);
   if (isAuth) {
     return <Navigate to={'/profile'} />
   } else {
@@ -21,6 +21,7 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage}) => {
             login: '',
             password: '',
             remember: '',
+            captcha: '',
           }}
           validationSchema={LoginValidationSchema}
           onSubmit={ (formData, {setFieldValue}) => {
@@ -28,7 +29,8 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage}) => {
               formData.login,
               formData.password,
               formData.remember === '' ? false : formData.remember,
-              setFieldValue
+              captchaUrl ? formData.captcha : null,
+              setFieldValue,
             );
           }}
         >
@@ -55,6 +57,15 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage}) => {
                   {isError ? <div className={styles.generalErrorFetching}>{errorMessage}</div> : ''}
                 </div>
 
+                {captchaUrl ?
+                  <div className={styles.inputWrapper}>
+                    <img src={captchaUrl} alt="captcha"/>
+                    <Field className={styles.checkbox} id="captcha" name="captcha" placeholder="Captcha"/>
+                  </div> : ''
+                }
+
+
+
                 <div className={styles.buttonWrapper}>
                   <button type="submit" className={styles.authButton} disabled={!(isValid && dirty)}>Log In</button>
                   <div className={styles.preloaderWrapper}>{isFetching ? <Preloader/> : ''}</div>
@@ -75,6 +86,7 @@ export default connect(
     isFetching: state.auth.isFetching,
     isError: state.auth.errorAuthFetching,
     errorMessage: state.auth.errorAuthFetchingMessage,
+    captchaUrl: state.auth.captchaUrl,
   }),
   {login, logout})
 (Login);

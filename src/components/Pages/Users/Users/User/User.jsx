@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import defaultImg from "../../../../Other/user-smalled.png";
 import React from "react";
 
-const User = ({user, followingInProgress, follow, unfollow, isAuth}) => {
+const User = ({user, followingInProgress, follow, unfollow, isAuth, loggedUserId}) => {
   return (
     <div className={isAuth ? styles.userBlock : styles.userBlockLogout} key={user.id}>
       <div className={styles.imgWrapper}>
@@ -15,7 +15,7 @@ const User = ({user, followingInProgress, follow, unfollow, isAuth}) => {
         <div className={styles.nameBlockWrapper}>{user.name}</div>
         {user.status ? <div className={styles.statusBlockWrapper}><b>status:</b> {user.status}</div> : ''}
       </div>
-      {isAuth ?
+      {isAuth && loggedUserId !== user.id ?
         <div className={styles.buttonsWrapper}>
         {user.followed === true ?
           <button disabled={followingInProgress.some(id => user.id === id)}

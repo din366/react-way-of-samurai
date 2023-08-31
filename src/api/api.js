@@ -9,6 +9,7 @@ const axiosCustomInstance = axios.create({
   },
 })
 // ok
+
 export const usersApi = {
   getUsers(currentPage = 1, pageSize = 10) {
     return axiosCustomInstance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data);
@@ -41,6 +42,10 @@ export const profileApi = {
     const formData = new FormData();
     formData.append("image", file);
     return axiosCustomInstance.put(`profile/photo`, formData,{headers: {"Content-Type": "multipart/form-data"}});
+  },
+
+  editUser(editData) {
+    return axiosCustomInstance.put(`profile`, editData);
   }
 }
 
@@ -53,11 +58,17 @@ export const authApi = {
     return axiosCustomInstance.get(`profile/${id}`).then(res => res.data.photos.small); // return only thumbnail url
   },
 
-  login (email, password, rememberMe) {
-    return axiosCustomInstance.post('auth/login', {email, password, rememberMe}).then(res => res);
+  login (email, password, rememberMe, captcha) {
+    return axiosCustomInstance.post('auth/login', {email, password, rememberMe, captcha}).then(res => res);
   },
 
   logout () {
     return axiosCustomInstance.delete('auth/login');
   },
+}
+
+export const securityApi = {
+  getCaptchaUrl() {
+    return axiosCustomInstance.get('security/get-captcha-url');
+  }
 }

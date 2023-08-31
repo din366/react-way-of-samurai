@@ -1,0 +1,197 @@
+.modalWrapper{
+  z-index: 100;
+  position: absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalWrapperGrayOpacity {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.3;
+  z-index: 99;
+}
+
+.modalBlock{
+  background-color: white;
+  z-index: 101;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "generalLeftBlock rightContactBlock"
+    "confirmButtonsBlock confirmButtonsBlock";
+  grid-gap: 40px;
+  position: relative;
+  border-radius: 10px;
+}
+
+.leftBlock{
+  grid-area: generalLeftBlock;
+}
+
+.rightContactsBlock{
+  grid-area: rightContactBlock;
+}
+
+.confirmButtonsBlock{
+  grid-area: confirmButtonsBlock;
+}
+
+.closeButton {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 15px;
+  background-image: url(/src/components/Other/close.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1000;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.inputWrapper{
+  max-width: 330px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.inputWrapper label {
+  font-size: 14px;
+  display: block;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.inputWrapper label.checkboxLabel{
+  width: auto;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.checkboxWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+.checkboxWrapper .checkbox {
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: 1px solid gray
+}
+
+.buttonWrapper{
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.errorBlock{
+  position: absolute;
+  bottom: -15px;
+  /*transform:  translateX(50%);*/
+  right: -15px;
+  font-size: 13px;
+  padding: 3px 10px;
+  background-color: #f5f5f7;
+  border-radius: 10px;
+  border-bottom: 3px solid red;
+}
+
+.authButton{
+  padding: 8px 30px;
+  height: 35px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ff8f49;
+  color: white;
+  transition: 0.3s all;
+}
+
+.authButton:hover {
+  background-color: #fc5a35;
+}
+
+.authButton:disabled {
+  background-color: gray;
+}
+
+.preloaderWrapper{
+  position: absolute;
+  transform: translateX(50%);
+  right: calc(50% - 75px);
+  max-width: 30px;
+  max-height: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.generalErrorFetchingWrapper{
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s all;
+}
+
+.setHeightErrorWrapper{
+  height: 80px;
+}
+
+.generalErrorFetching{
+  padding: 13px 20px;
+  background-color: #e73737;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.formzindex{
+  z-index: 101;
+}
+
+.modalBlockSubtitle{
+  display: block;
+  font-size: 16px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.modalBlockSubtitle:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 2px;
+  height: 4px;
+  background: linear-gradient(to left, #f1c387, #ff8f49);
+}
