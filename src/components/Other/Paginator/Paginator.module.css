@@ -1,0 +1,23 @@
+.paginationWrapper{
+  padding: 20px 20px 20px 20px;
+}
+
+.paginationWrapper span {
+  display: inline;
+  padding: 10px;
+  margin: 0 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+
+.paginationWrapper span:hover {
+  background-color: antiquewhite;
+  color: black;
+}
+
+.paginationWrapper .selectedPage {
+  font-weight: 700;
+  background-color: #ff8f49;
+  color: white;
+}

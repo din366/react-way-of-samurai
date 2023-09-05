@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Raleway';
+  src: local('Raleway'),
+  url('./../Other/fonts/Raleway/Raleway-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: local('Raleway'),
+  url('./../Other/fonts/Raleway/Raleway-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
 .header {
   grid-area: header;
   display: flex;
@@ -100,4 +114,39 @@
 
 .logoutButton:hover {
   background-color: #fc5a35;
+}
+
+.headerSocialTitleWrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 100px;
+  margin-left: 10px;
+}
+
+.headerSocialName{
+  font-family: "Raleway";
+  font-weight: 700;
+  display: block;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+
+}
+
+.headerSocialSubname{
+  font-family: "Raleway";
+  font-weight: 300;
+  display: block;
+  font-size: 12px;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+}
+
+.navLinkHeaderLogoWrapper{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }

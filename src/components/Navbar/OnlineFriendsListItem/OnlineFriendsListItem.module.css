@@ -1,16 +1,23 @@
-.friendItem{
+div a.friendItem{
   display: flex;
   align-items: center;
   margin: 5px;
   padding: 5px 15px 5px 10px;
-  background-color: #fcf4ec;
   background-color: white;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 100%;
+  transition: 0.3s all;
+  position: relative;
 }
 
 .friendItem img {
   width: 30px;
   margin-right: 5px;
+  border-radius: 50%;
+}
+
+div a.friendItem:hover {
+  transform: translateY(-3px);
+  background-color: #f5f5f7;
 }

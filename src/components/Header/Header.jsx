@@ -2,12 +2,17 @@ import React from "react";
 import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import Preloader from "../Other/Preloader/Preloader";
-import defaultUser from '../Other/user-smalled.png'
+import defaultUser from '../Other/user-smalled.png';
+import samuraiLogo from './../Other/samuraiLogo.png';
 const Header = (props) => {
   return (
     <header className={styles.header}>
-      <NavLink to={'/profile'}>
-        <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png" alt=""/>
+      <NavLink to={'/'} className={styles.navLinkHeaderLogoWrapper}>
+        <img src={samuraiLogo} alt="logo"/>
+        <div className={styles.headerSocialTitleWrapper}>
+          <span className={styles.headerSocialName}>Samurai</span>
+          <span className={styles.headerSocialSubname}>Social Network</span>
+        </div>
       </NavLink>
 
       <div className={styles.loginWrapper}>

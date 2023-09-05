@@ -7,6 +7,7 @@ const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS';
+const TOGGLE_SHOW_ONLY_FRIENDS = '/users/TOGGLE_SHOW_ONLY_FRIENDS';
 
 const initialState =  {
   users: [],
@@ -16,6 +17,7 @@ const initialState =  {
   currentPage: 1,
   isFetching: false,
   followingInProgress: [],
+  showOnlyFriends: null,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -63,6 +65,12 @@ const usersReducer = (state = initialState, action) => {
           state.followingInProgress.filter(id => id !== action.userId) // create new array and filter so that only the current button is disabled
       }
     }
+    case TOGGLE_SHOW_ONLY_FRIENDS: {
+      return {
+        ...state,
+        showOnlyFriends: action.status
+      }
+    }
     default:
       return state;
   }
@@ -76,14 +84,17 @@ export const setTotalUsersCount = (totalPagesCount) => ({ type: SET_TOTAL_USERS_
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleIsFollowingProgress = (followingStatus, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingStatus, userId});
 
+export const toggleShowOnlyFriends = (status) => ({ type: TOGGLE_SHOW_ONLY_FRIENDS, status});
+
+
 /* for redux thunk */
-export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+export const getUsers = (currentPage, pageSize, onlyFriends) => async (dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(setUsers([]));
-    dispatch(setCurrentPage(currentPage));
+    dispatch(setCurrentPage(currentPage))
+    dispatch(toggleShowOnlyFriends(onlyFriends))
 
-    let data = await usersApi.getUsers(currentPage, pageSize)
-
+    let data = await usersApi.getUsers(currentPage, pageSize, onlyFriends)
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
     dispatch(toggleIsFetching(false));

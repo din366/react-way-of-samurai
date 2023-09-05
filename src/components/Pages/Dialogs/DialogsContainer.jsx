@@ -1,27 +1,45 @@
+import React from "react";
 import Dialogs from "./Dialogs";
-import {addChatMessageActionCreator, updateChatNewMessageActionCreator} from "../../../state/dialogsReducer";
+import {
+  addChatMessageActionCreator,
+  getFriendsList,
+} from "../../../state/dialogsReducer";
 import {connect} from "react-redux";
 import withAuthRedirect from "../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+
+class DialogsApiComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.getFriendsList();
+  }
+
+  render () {
+    return <Dialogs dialogsMessages={this.props.dialogsMessages}
+                    dialogsList={this.props.dialogsList}
+                    addChatMessage={this.props.addChatMessageActionCreator}
+                    isAuth={this.props.isAuth}/>
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
     dialogsMessages: state.dialogsPage.dialogsMessages,
     dialogsList: state.dialogsPage.dialogsList,
+    isAuth: state.auth.isAuth,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addChatMessage: (message) => {
-      dispatch(addChatMessageActionCreator(message))
-    },
-  }
-}
 
 const DialogsContainer = compose( // for HOC components (create conveyor)
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps, {
+    addChatMessageActionCreator,
+    getFriendsList
+  }),
   withAuthRedirect,
-)(Dialogs);
+)(DialogsApiComponent);
 
 export default DialogsContainer;

@@ -1,5 +1,5 @@
 .dialogsItem {
-  padding: 15px;
+  padding: 10px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -18,4 +18,8 @@
 
 .dialogsItem.active {
   background-color: #fce0c0;
+}
+
+.friendPhoto{
+  border-radius: 50%;
 }

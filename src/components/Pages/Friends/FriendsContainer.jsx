@@ -3,10 +3,8 @@ import {connect} from "react-redux";
 import {
   getUsers,
   follow,
-  unfollow,
-  toggleShowOnlyFriends, setCurrentPage,
+  unfollow, setCurrentPage,
 } from "../../../state/usersReducer";
-import Users from "./Users/Users";
 import Preloader from "../../Other/Preloader/Preloader";
 import {compose} from "redux";
 import {
@@ -17,35 +15,38 @@ import {
   isFetchingReselect,
   isFollowingProgressReselect,
 } from "../../../state/selectors/usersSelectors";
+import Friends from "./Friends/Friends";
 
-class UsersApiComponent extends React.Component{
+class FriendsApiComponent extends React.Component{
   constructor(props) {
     super(props);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.getUsers(pageNumber, this.props.pageSize, this.props.showOnlyFriends);
+    this.props.getUsers(pageNumber, 10, true);
+  }
+
+  componentDidMount() {
+    this.props.getUsers(1, 10, true);
   }
 
   render() {
     return <>
       {this.props.isFetching ? <Preloader /> : null}
-    <Users totalUsersCount={this.props.totalUsersCount}
-           pageSize={this.props.pageSize}
-           users={this.props.users}
-           onPageChanged={this.onPageChanged}
-           currentPage={this.props.currentPage}
-           unfollow={this.props.unfollow}
-           follow={this.props.follow}
-           toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
-           followingInProgress={this.props.isFollowingProgress}
-           isAuth={this.props.isAuth}
-           loggedUserId={this.props.loggedUserId}
-           toggleShowOnlyFriends={this.props.toggleShowOnlyFriends}
-           showOnlyFriends = {this.props.onlyFriends}
-           getUsers = {this.props.getUsers}
-           setCurrentPage={this.props.setCurrentPage}
-    />
+      <Friends totalUsersCount={this.props.totalUsersCount}
+             pageSize={this.props.pageSize}
+             users={this.props.users}
+             onPageChanged={this.onPageChanged}
+             currentPage={this.props.currentPage}
+             unfollow={this.props.unfollow}
+             follow={this.props.follow}
+             toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+             followingInProgress={this.props.isFollowingProgress}
+             isAuth={this.props.isAuth}
+             loggedUserId={this.props.loggedUserId}
+             getUsers = {this.props.getUsers}
+             setCurrentPage={this.props.setCurrentPage}
+      />
     </>
   }
 }
@@ -62,16 +63,14 @@ const mapStateToProps = (state) => {
     isFollowingProgress: isFollowingProgressReselect(state),
     isAuth: state.auth.isAuth,
     loggedUserId: state.auth.userId,
-    onlyFriends: state.usersPage.showOnlyFriends,
   }
 }
 
 export default compose(
   connect(mapStateToProps, { // Вместо mapDispatchToProps в connect отдаем объект с action creators
-  follow,
-  unfollow,
-  getUsers,
-  toggleShowOnlyFriends,
-  setCurrentPage,
-}),
-)(UsersApiComponent);
+    follow,
+    unfollow,
+    getUsers,
+    setCurrentPage,
+  }),
+)(FriendsApiComponent);

@@ -11,8 +11,8 @@ const axiosCustomInstance = axios.create({
 // ok
 
 export const usersApi = {
-  getUsers(currentPage = 1, pageSize = 10) {
-    return axiosCustomInstance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data);
+  getUsers(currentPage = 1, pageSize = 10, onlyFriends = null) {
+    return axiosCustomInstance.get(`users?page=${currentPage}&count=${pageSize}&friend=${onlyFriends}`).then(res => res.data);
   },
 
   followUser(userId) {
@@ -71,4 +71,10 @@ export const securityApi = {
   getCaptchaUrl() {
     return axiosCustomInstance.get('security/get-captcha-url');
   }
+}
+
+export const dialogsApi = {
+  getFriends(currentPage = 1, pageSize = 20) {
+    return axiosCustomInstance.get(`users?page=${currentPage}&count=${pageSize}&friend=true`).then(res => res.data);
+  },
 }

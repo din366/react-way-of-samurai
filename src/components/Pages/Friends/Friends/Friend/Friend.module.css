@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'Raleway';
+  src: local('Raleway'),
+  url('./../../../../Other/fonts/Raleway/Raleway-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: local('Raleway'),
+  url('./../../../../Other/fonts/Raleway/Raleway-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+.friendBlockWrapper{
+  display: flex;
+  width: 100%;
+  padding: 0;
+  background-color: #f5f5f7;
+  border-radius: 20px;
+  position: relative;
+  box-sizing: border-box;
+  height: 150px;
+}
+
+.imgWrapper{
+  max-width: 150px;
+  min-width: 150px;
+  overflow: hidden;
+  border-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 20px;
+  background-color: #e1e1e1;
+}
+
+.userImg{
+  width: 100%;
+}
+
+.infoBlock{
+  padding: 20px 20px 20px 10px;
+  width: 100%;
+}
+
+.nameBlockWrapper{
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #424242;
+}
+
+.statusBlockWrapper{
+  font-size: 14px;
+  margin-bottom: 10px;
+  width: calc(100% - 150px);
+}
+
+.buttonsWrapper{
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+}
+
+.followButton {
+  background-color: #ff8f49;
+  color: white;
+}
+
+.unfollowButton {
+  background-color: #c7c7c7;
+  color: #171717;
+}
+
+.buttonsWrapper button {
+  text-align: center;
+  display: block;
+  padding: 10px;
+  min-width: 100px;
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.sendMessageButton{
+  margin-bottom: 10px;
+  background-color: #ff8f49;
+  color: white;
+}

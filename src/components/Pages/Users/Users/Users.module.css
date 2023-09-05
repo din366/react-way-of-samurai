@@ -1,5 +1,6 @@
 .usersMainWrapper{
   overflow: hidden;
+  position: relative;
 }
 
 .usersBlockWrapper{
@@ -9,26 +10,23 @@
   padding: 0 20px;
 }
 
-.paginationWrapper{
-  padding: 20px 20px 20px 20px;
+.OnlyFriendsBlockWrapper{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.paginationWrapper span {
-  display: inline;
-  padding: 10px;
-  margin: 0 2px;
-  border-radius: 3px;
+.OnlyFriendsBlockWrapper label {
+  margin-right: 10px;
+  font-size: 18px;
   cursor: pointer;
-  transition: 0.3s all;
 }
 
-.paginationWrapper span:hover {
-  background-color: antiquewhite;
-  color: black;
-}
-
-.paginationWrapper .selectedPage {
-  font-weight: 700;
-  background-color: #ff8f49;
-  color: white;
+.OnlyFriendsBlockWrapper input {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
 }

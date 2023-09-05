@@ -1,4 +1,7 @@
+import {dialogsApi} from "../api/api";
+
 const ADD_CHAT_MESSAGE = 'dialogs/ADD-CHAT-MESSAGE';
+const GET_FRIENDS_LIST = 'dialogs/GET_FRIENDS_LIST';
 
 const initialState = {
   dialogsMessages: [
@@ -6,18 +9,14 @@ const initialState = {
     {message: 'How are you?'},
     {message: 'Not bad!'}
   ],
-  dialogsList: [
-    {id: 1, name: 'Alex'},
-    {id: 2, name: 'Nikolay'},
-    {id: 3, name: 'Petr'},
-    {id: 4, name: 'Natasha'},
-    {id: 5, name: 'Maxim'},
-    {id: 6, name: 'Andrey'},
-  ],
+  dialogsList: [],
 };
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_FRIENDS_LIST: {
+      return { ...state, dialogsList: [...action.friendsList]}
+    }
     case ADD_CHAT_MESSAGE: {
         const newMessage = {
         message: action.message,
@@ -35,5 +34,12 @@ const dialogsReducer = (state = initialState, action) => {
 export const addChatMessageActionCreator = (text) => ({
   type: ADD_CHAT_MESSAGE, message: text
 });
+
+export const getFriendsListAC = (friendsList) => ({ type: GET_FRIENDS_LIST, friendsList});
+
+export const getFriendsList = () => async (dispatch) => {
+  let res = await dialogsApi.getFriends();
+  dispatch(getFriendsListAC(res.items));
+}
 
 export default dialogsReducer;

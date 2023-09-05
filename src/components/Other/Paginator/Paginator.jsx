@@ -1,4 +1,4 @@
-import styles from "../../Pages/Users/Users/Users.module.css";
+import styles from "./Paginator.module.css";
 import React from "react";
 
 const Paginator = ({totalCount, pageSize, currentPage, onPageChanged}) => {
@@ -6,19 +6,23 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChanged}) => {
   const pagesCount = Math.ceil(totalCount / pageSize);
   const pages = [];
 
-  if (currentPage <= 6) {
-    for (let i= 1; i <= 12; i++) { // started pages
-      pages.push(i);
+    if (pagesCount <= 12) { // if few pages ( <= 12 )
+      for (let i= 1; i <= pagesCount; i++) {
+        pages.push(i);
+      }
+    } else if (currentPage <= 6 && pagesCount >= 12) {
+      for (let i= 1; i <= 12; i++) { // started pages
+        pages.push(i);
+      }
+    } else if (currentPage + 6 >= pagesCount) { // latest pages
+      for (let i= pagesCount - 12; i <= pagesCount; i++) {
+        pages.push(i);
+      }
+    } else {
+      for (let i= currentPage - 6; i <= currentPage + 6; i++) { // medium pages
+        pages.push(i);
+      }
     }
-  } else if (currentPage + 6 >= pagesCount) { // latest pages
-    for (let i= pagesCount - 12; i <= pagesCount; i++) {
-      pages.push(i);
-    }
-  } else {
-    for (let i= currentPage - 6; i <= currentPage + 6; i++) { // medium pages
-      pages.push(i);
-    }
-  }
 
   return (
     <div className={styles.paginationWrapper}>
