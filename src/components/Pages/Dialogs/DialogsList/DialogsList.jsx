@@ -1,13 +1,17 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from './DialogsList.module.css';
 import {DialogsItem} from "./DialogsItem/DialogsItem";
-import {getFriendsList} from "../../../../state/dialogsReducer";
+import {Link} from "react-router-dom";
 
 export const DialogsList = (props) => {
-
   return (
     <div className={styles.dialogsList}>
-      {props.dialogsList.map(item => <DialogsItem key={item.id} to={item.id} name={item.name} photo={item.photos.large}/>)}
+      {props.dialogsList.length !== 0 ?
+        props.dialogsList.map(item => <DialogsItem key={item.id} to={item.id} name={item.userName} photo={item.photos.large}/>) :
+        <div className={styles.noDialoguesWrapper}>
+          <span className={styles.noDialogues}>no active dialogues</span>
+          <span className={styles.noDialogues}><Link to={'/friends'}>write</Link> your first message</span>
+        </div>}
     </div>
   );
 };

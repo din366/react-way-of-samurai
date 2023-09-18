@@ -29,3 +29,14 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #fcbc7b;
 }
+
+.noDialoguesWrapper{
+  margin-top: 30px;
+}
+
+.noDialogues{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}

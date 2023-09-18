@@ -2,11 +2,38 @@ import React from "react";
 import styles from './MessagesList.module.css';
 import {SingleMessage} from "./SingleMessage/SingleMessage";
 import AddMessageBlock from "./AddMessageBlock/AddMessageBlock";
-export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea}) => {
+import defaultUserPhoto from './../../../Other/user.png'
+export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo}) => {
+  let seenUserData = null;
+
+  if (activeChatUserInfo) {
+    seenUserData = (new Date(activeChatUserInfo.lastUserActivityDate)).toString();
+  }
+
   return (
     <div className={styles.messagesList}>
-      {dialogsMessages.map(item => <SingleMessage key={Math.random()} message={item.message} />)}
-      <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea}/>
+      {currentChatUserId && activeChatUserInfo ?
+        <div>
+          <div className={styles.userHeader}>
+            <img src={activeChatUserInfo.photos && activeChatUserInfo.photos.large ? activeChatUserInfo.photos.large : defaultUserPhoto} alt="userPhoto"/>
+
+            <div className={styles.userInfo}>
+              <span className={styles.UserName}>{activeChatUserInfo.userName}</span>
+              <span className={styles.UserName}>last seen at {seenUserData}</span>
+            </div>
+          </div>
+          <div className={styles.messagesBlockWrapper}>
+            {dialogsMessages.map(item => <SingleMessage key={Math.random()} message={item.message} />)}
+            <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea}/>
+          </div>
+        </div> :
+        <div className={styles.noMessages}>
+          <div>
+            <span>No active dialogues</span>
+            <span>select dialogue on the left</span>
+          </div>
+        </div>
+        }
     </div>
-  );
+  )
 };

@@ -75,7 +75,7 @@
   color: #171717;
 }
 
-.buttonsWrapper button {
+.buttonsWrapper button, .sendMessageButton {
   text-align: center;
   display: block;
   padding: 10px;
@@ -84,10 +84,15 @@
   border: none;
   transition: 0.3s all;
   cursor: pointer;
+  text-decoration: none;
+  font-size: 12px;
 }
+
 
 .sendMessageButton{
   margin-bottom: 10px;
   background-color: #ff8f49;
   color: white;
+  width: 80px;
+  padding: 10px 0;
 }

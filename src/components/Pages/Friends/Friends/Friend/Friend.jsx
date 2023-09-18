@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './Friend.module.css';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import defaultImg from "../../../../Other/user-smalled.png";
 
 const Friend = ({user, followingInProgress, follow, unfollow, isAuth, loggedUserId, onPageChanged}) => {
@@ -17,7 +17,7 @@ const Friend = ({user, followingInProgress, follow, unfollow, isAuth, loggedUser
       </div>
       {isAuth && loggedUserId !== user.id ?
         <div className={styles.buttonsWrapper}>
-          <button className={styles.sendMessageButton}>Go to chat</button>
+          <Link to={`/dialogs/${user.id}`} className={styles.sendMessageButton}>Go to chat</Link>
           {user.followed === true ?
             <button disabled={followingInProgress.some(id => user.id === id)}
                     onClick={() => {unfollow(user.id); onPageChanged(1)}}

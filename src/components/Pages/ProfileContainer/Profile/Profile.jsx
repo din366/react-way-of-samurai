@@ -1,7 +1,6 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {setSendUserDataStatus} from "../../../../state/profileReducer";
 
 const Profile = ({profile, status, updateStatus, isAuth, loggedUserId, changePhoto, editUserInfo,
                    editUserMode, sendUserDataStatus, setSendUserDataStatus, setEditUserMode, isGeneralSendUserDataError,
