@@ -9,15 +9,6 @@ const axiosCustomInstance = axios.create({
   },
 })
 
-axiosCustomInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-    return config;
-  } else return config;
-})
-// ok
-
 export const usersApi = {
   getUsers(currentPage = 1, pageSize = 10, onlyFriends = null) {
     return axiosCustomInstance.get(`users?page=${currentPage}&count=${pageSize}&friend=${onlyFriends}`).then(res => res.data);
@@ -94,7 +85,11 @@ export const dialogsApi = {
     return axiosCustomInstance.put(`dialogs/${userId}`).then(res => res.data);
   },
 
-  startChatting(userId) { // start chatting, refresh your companion so that he was on top
+  getMessages(userId) { // get messages, refresh your companion so that he was on top
     return axiosCustomInstance.get(`dialogs/${userId}/messages`).then(res => res.data);
-  }
+  },
+
+  sendMessage(userId, message) { // send new message
+    return axiosCustomInstance.post(`dialogs/${userId}/messages`, {body: `${message}`}).then(res => res.data);
+  },
 }

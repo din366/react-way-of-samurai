@@ -8,7 +8,6 @@ import {Navigate} from "react-router-dom";
 import Preloader from "../Other/Preloader/Preloader";
 
 const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) => {
-  console.log(FormData.captcha);
   if (isAuth) {
     return <Navigate to={'/profile'} />
   } else {
@@ -34,7 +33,7 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) =
             );
           }}
         >
-          {({errors, touched, dirty, isValid, valid}) => {
+          {({errors, touched, dirty, isValid}) => {
             return <Form>
               <div className={styles.formWrapper}>
                 <div className={styles.inputWrapper}>

@@ -3,9 +3,8 @@ import styles from './MessagesList.module.css';
 import {SingleMessage} from "./SingleMessage/SingleMessage";
 import AddMessageBlock from "./AddMessageBlock/AddMessageBlock";
 import defaultUserPhoto from './../../../Other/user.png'
-export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo}) => {
+export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo, sendMessage, loggedUserPhoto}) => {
   let seenUserData = null;
-
   if (activeChatUserInfo) {
     seenUserData = (new Date(activeChatUserInfo.lastUserActivityDate)).toString();
   }
@@ -23,8 +22,8 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
             </div>
           </div>
           <div className={styles.messagesBlockWrapper}>
-            {dialogsMessages.map(item => <SingleMessage key={Math.random()} message={item.message} />)}
-            <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea}/>
+            {dialogsMessages.map(item => <SingleMessage data={item} currentChatUserId={currentChatUserId} activeChatUserInfo={activeChatUserInfo} loggedUserPhoto={loggedUserPhoto}/>)}
+            <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea} currentChatUserId={currentChatUserId} sendMessage={sendMessage}/>
           </div>
         </div> :
         <div className={styles.noMessages}>

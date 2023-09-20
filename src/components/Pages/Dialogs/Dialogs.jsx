@@ -3,9 +3,9 @@ import styles from './Dialogs.module.css';
 import {DialogsList} from "./DialogsList/DialogsList";
 import {MessagesList} from "./MessagesList/MessagesList";
 import {Navigate, useParams} from "react-router-dom";
-import {startChatting} from "../../../state/dialogsReducer";
 
-const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, currentChatUserId, setCurrentChatUserId, startChatting, activeChatUserInfo}) => {
+const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, loggedUserPhoto,
+                   currentChatUserId, setCurrentChatUserId, startChatting, activeChatUserInfo, sendMessage}) => {
   let { userId } = useParams();
 
   useEffect(() => {
@@ -26,6 +26,8 @@ const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, currentC
                     addChatMessage={addChatMessage}
                     currentChatUserId={currentChatUserId}
                     activeChatUserInfo={activeChatUserInfo}
+                    sendMessage={sendMessage}
+                    loggedUserPhoto={loggedUserPhoto}
                     />
     </div>
   );

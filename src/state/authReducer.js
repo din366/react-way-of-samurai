@@ -6,7 +6,6 @@ const ERROR_AUTH_FETCHING = 'auth/ERROR_AUTH_FETCHING';
 const UPDATE_HEADER_USER_PHOTO = 'auth/UPDATE_HEADER_USER_PHOTO';
 const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS';
 
-
 const initialState =  {
   userId: null,
   email: null,

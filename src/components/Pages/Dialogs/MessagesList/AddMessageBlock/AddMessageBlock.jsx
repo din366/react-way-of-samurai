@@ -2,10 +2,8 @@ import React from "react";
 import styles from './AddMessageBlock.module.css';
 import {Field, Form, Formik} from "formik";
 
-const AddMessageBlock = ({addChatMessage}) => {
-  const addMessage = (message) => {
-    addChatMessage(message);
-  }
+const AddMessageBlock = ({currentChatUserId, sendMessage}) => {
+  console.log(sendMessage)
 
   return (
     <Formik
@@ -13,7 +11,7 @@ const AddMessageBlock = ({addChatMessage}) => {
         message: '',
       }}
       onSubmit={ (values, {resetForm}) => {
-        addMessage(values.message);
+        sendMessage(currentChatUserId, values.message);
         resetForm();
       }}
       validateOnChange={false}

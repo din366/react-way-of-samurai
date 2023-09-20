@@ -1,14 +1,29 @@
 .message {
-  display: flex;
-  align-items: center;
+  display: block;
   padding: 10px 25px 10px 15px;
   background-color: #fcf4ec;
   margin-bottom: 15px;
   border-radius: 10px;
   width: fit-content;
+  min-width: 300px;
 }
 
-.message img {
+.messageUserInfo{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.messageUserInfo img {
   width: 30px;
-  margin-right: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.messageWrapper{
+  display: block;
+}
+
+.sendDateWrapper{
+  text-align: right;
 }
