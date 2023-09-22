@@ -14,6 +14,16 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) =
     return (
       <>
         <h1 className={styles.title}>Login</h1>
+        
+        <div className={styles.testedDataWrapper}>
+          <div className={styles.testedDataTitle}>Test account:</div>
+          <div className={styles.testedData}>Login: free@samuraijs.com</div>
+          <div className={styles.testedData}>Password: free</div>
+
+          <button className={styles.loginTestAccountButton} onClick={() => {login('free@samuraijs.com', 'free', false, null)}}>Login test account</button>
+        </div>
+
+        <div className={styles.afterDataText}>or login your account:</div>
 
         <Formik
           initialValues={{
@@ -43,7 +53,7 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) =
                 </div>
                 <div className={styles.inputWrapper}>
                   <label htmlFor="password">Password:</label>
-                  <Field className={styles.input} id="password" name="password" placeholder="Your password" />
+                  <Field className={styles.input} id="password" name="password" placeholder="Your password"/>
                   {errors.password && touched.password && <div className={styles.errorBlock}>{errors.password}</div>}
                 </div>
 
@@ -62,9 +72,7 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) =
                     <Field className={styles.checkbox} id="captcha" name="captcha" placeholder="Captcha"/>
                   </div> : ''
                 }
-
-
-
+                
                 <div className={styles.buttonWrapper}>
                   <button type="submit" className={styles.authButton} disabled={!(isValid && dirty)}>Log In</button>
                   <div className={styles.preloaderWrapper}>{isFetching ? <Preloader/> : ''}</div>
@@ -76,7 +84,6 @@ const Login = ({login, isAuth, isFetching, isError, errorMessage, captchaUrl}) =
       </>
     )
   }
-
 }
 
 export default connect(

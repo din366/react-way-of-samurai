@@ -13,10 +13,13 @@ const Navbar = ({state, isAuth}) => {
         <div><NavLink to="/dialogs" className={NavData => NavData.isActive ? styles.active : ''}>Messages</NavLink></div>
         <div className={styles.lastNavChild}><NavLink to="/users" className={NavData => NavData.isActive ? styles.active : ''}>Users</NavLink></div>
 
-        <span className={styles.onlineTitle}>Your friends:</span>
-        <div className={styles.sidebarFriends}>
-          <OnlineFriendsListItem/>
-        </div>
+        {isAuth ? <>
+          <span className={styles.onlineTitle}>Your friends:</span>
+          <div className={styles.sidebarFriends}>
+            <OnlineFriendsListItem/>
+          </div>
+        </> : ''}
+
       </nav>
 
 

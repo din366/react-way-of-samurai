@@ -125,3 +125,21 @@
 .profileChangePhotoButton{
   display: none;
 }
+
+.goChatButton{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 30px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 0 auto 10px;
+  border: none;
+  background-color: gray;
+  color: white;
+  transition: 0.3s all;
+}
+
+.goChatButton:hover {
+  background-color: #ff8f49;
+}

@@ -9,6 +9,7 @@ div a.friendItem{
   width: 100%;
   transition: 0.3s all;
   position: relative;
+  overflow: hidden;
 }
 
 .friendItem img {

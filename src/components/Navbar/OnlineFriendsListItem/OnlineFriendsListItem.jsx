@@ -7,16 +7,16 @@ import {Link} from "react-router-dom";
 const OnlineFriendsListItem = (props) => {
   const [friendsList, getFriendsList] = useState([]);
 
-
   useEffect(() => {
-    let a = async () => {
+    let getFriends = async () => {
       return await dialogsApi.getFriends().then(res => getFriendsList(res.items));
     }
-    a();
+
+    getFriends();
   }, [])
 
   return (<>
-    {friendsList.map((item, index) => index > 6 ? "" : <Link to={`profile/${item.id}`} className={styles.friendItem} data-id={item.id}>
+    {friendsList.map((item, index) => index > 6 ? "" : <Link to={`profile/${item.id}`} className={styles.friendItem} data-id={item.id} key={item.id}>
       <img src={item.photos.large ? item.photos.large : defaultImage} alt="userPhoto"/>
       <span>{item.name}</span>
     </Link>

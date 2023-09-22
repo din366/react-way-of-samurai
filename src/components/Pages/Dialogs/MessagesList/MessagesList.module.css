@@ -49,10 +49,16 @@
   padding: 10px 20px;
 }
 
-.userHeader img {
+.userHeader a {
   height: 100%;
   border-radius: 50%;
   margin-right: 15px;
+  overflow: hidden;
+}
+
+.userHeader a img {
+  height: 100%;
+
 }
 
 .userInfo{

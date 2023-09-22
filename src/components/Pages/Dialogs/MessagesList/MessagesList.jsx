@@ -4,6 +4,7 @@ import {SingleMessage} from "./SingleMessage/SingleMessage";
 import AddMessageBlock from "./AddMessageBlock/AddMessageBlock";
 import defaultUserPhoto from './../../../Other/user.png'
 import {formatDate} from "../../../../utils/formatDate";
+import {Link} from "react-router-dom";
 export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo,
                                sendMessage, loggedUserPhoto, getNewPortionOldMessages, currentMessagePage}) => {
   const messagesEndRef = useRef(null);
@@ -26,7 +27,10 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
       {currentChatUserId && activeChatUserInfo ?
         <div>
           <div className={styles.userHeader}>
-            <img src={activeChatUserInfo.photos && activeChatUserInfo.photos.large ? activeChatUserInfo.photos.large : defaultUserPhoto} alt="userPhoto"/>
+            <Link to={`/profile/${currentChatUserId}`}>
+              <img src={activeChatUserInfo.photos && activeChatUserInfo.photos.large ? activeChatUserInfo.photos.large : defaultUserPhoto} alt="userPhoto"/>
+            </Link>
+
 
             <div className={styles.userInfo}>
               <span className={styles.UserName}>{activeChatUserInfo.userName}</span>

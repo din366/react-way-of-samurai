@@ -15,7 +15,6 @@ class DialogsApiComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getFriendsList();
     this.props.getAllDialogs();
   }
 

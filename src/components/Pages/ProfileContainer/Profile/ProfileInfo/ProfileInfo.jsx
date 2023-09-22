@@ -5,6 +5,7 @@ import Preloader from "../../../../Other/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfleStatus/ProfileStatusWithHooks";
 import ContactsInfoBlock from "./ContactsInfoBlock/ContactsInfoBlock";
 import EditUserProfileModal from "./EditUserProfileModal/EditUserProfileModal";
+import {Link} from "react-router-dom";
 
 export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId, changePhoto,
                               editUserInfo, editUserMode, sendUserDataStatus, setSendUserDataStatus,
@@ -40,6 +41,7 @@ export const ProfileInfo = ({profile, status, updateStatus, isAuth, loggedUserId
           </div>
 
           <div className={styles.contactsWrapper}>
+            {(isAuth && loggedUserId !== profile.userId) ? <Link to={`/dialogs/${profile.userId}`} className={styles.goChatButton}>Go to chat</Link> : ''}
             <div className={styles.contactsTitle}>Contacts:</div>
             <ContactsInfoBlock fullContactsArray={profile.contacts} />
           </div>
