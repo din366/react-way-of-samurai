@@ -5,7 +5,8 @@ import {MessagesList} from "./MessagesList/MessagesList";
 import {Navigate, useParams} from "react-router-dom";
 
 const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, loggedUserPhoto,
-                   currentChatUserId, setCurrentChatUserId, startChatting, activeChatUserInfo, sendMessage}) => {
+                   currentChatUserId, setCurrentChatUserId, startChatting, activeChatUserInfo, sendMessage,
+                   getNewPortionOldMessages, currentMessagePage}) => {
   let { userId } = useParams();
 
   useEffect(() => {
@@ -28,6 +29,8 @@ const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, loggedUs
                     activeChatUserInfo={activeChatUserInfo}
                     sendMessage={sendMessage}
                     loggedUserPhoto={loggedUserPhoto}
+                    getNewPortionOldMessages={getNewPortionOldMessages}
+                    currentMessagePage={currentMessagePage}
                     />
     </div>
   );

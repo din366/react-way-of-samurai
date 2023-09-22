@@ -73,3 +73,18 @@
   font-size: 14px;
   font-weight: 300;
 }
+
+.getOldMessageButton{
+  margin: 0 auto 20px;
+  padding: 8px 30px;
+  /*height: 40px;*/
+  border-radius: 10px;
+  border: none;
+  background-color: gray;
+  color: white;
+  transition: 0.3s all;
+}
+
+.getOldMessageButton:hover {
+  background-color: #ff8f49;
+}

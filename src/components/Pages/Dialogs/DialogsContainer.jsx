@@ -2,7 +2,7 @@ import React from "react";
 import Dialogs from "./Dialogs";
 import {
   addChatMessageActionCreator, getAllDialogs,
-  getFriendsList, sendNewMessage, setCurrentChatUserId, startChatting,
+  getFriendsList, getNewPortionOldMessages, sendNewMessage, setCurrentChatUserId, startChatting,
 } from "../../../state/dialogsReducer";
 import {connect} from "react-redux";
 import withAuthRedirect from "../../../hoc/WithAuthRedirect";
@@ -29,7 +29,9 @@ class DialogsApiComponent extends React.Component {
                     startChatting={this.props.startChatting}
                     activeChatUserInfo={this.props.activeChatUserInfo}
                     sendMessage={this.props.sendNewMessage}
-                    loggedUserPhoto={this.props.loggedUserPhoto}/>
+                    loggedUserPhoto={this.props.loggedUserPhoto}
+                    getNewPortionOldMessages={this.props.getNewPortionOldMessages}
+                    currentMessagePage={this.props.currentMessagePage}/>
   }
 }
 
@@ -41,6 +43,7 @@ const mapStateToProps = (state) => {
     loggedUserPhoto: state.auth.smallLogo,
     currentChatUserId: state.dialogsPage.currentChatUserId,
     activeChatUserInfo: getActiveChatInfoReselect(state),
+    currentMessagePage: state.dialogsPage.currentPage,
   }
 }
 
@@ -53,6 +56,7 @@ const DialogsContainer = compose( // for HOC components (create conveyor)
     getAllDialogs,
     setCurrentChatUserId,
     startChatting,
+    getNewPortionOldMessages
   }),
   withAuthRedirect,
 )(DialogsApiComponent);

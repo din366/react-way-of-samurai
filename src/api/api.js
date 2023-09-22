@@ -86,7 +86,7 @@ export const dialogsApi = {
   },
 
   getMessages(userId, page = 1) { // get messages, refresh your companion so that he was on top
-    return axiosCustomInstance.get(`dialogs/${userId}/messages?${page}`).then(res => res.data);
+    return axiosCustomInstance.get(`dialogs/${userId}/messages?page=${page}`).then(res => res.data);
   },
 
   sendMessage(userId, message) { // send new message

@@ -4,7 +4,8 @@ import {SingleMessage} from "./SingleMessage/SingleMessage";
 import AddMessageBlock from "./AddMessageBlock/AddMessageBlock";
 import defaultUserPhoto from './../../../Other/user.png'
 import {formatDate} from "../../../../utils/formatDate";
-export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo, sendMessage, loggedUserPhoto}) => {
+export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo,
+                               sendMessage, loggedUserPhoto, getNewPortionOldMessages, currentMessagePage}) => {
   const messagesEndRef = useRef(null);
 
   let seenUserData = null;
@@ -13,7 +14,7 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
   }
 
   const scrollToBottom = () => {
-    if (messagesEndRef.current) {
+    if (messagesEndRef.current && currentMessagePage === 1) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -33,6 +34,7 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
             </div>
           </div>
           <div className={styles.messagesBlockWrapper}>
+            {dialogsMessages.length < 10 ? '' : <button className={styles.getOldMessageButton} onClick={() => getNewPortionOldMessages(currentChatUserId, currentMessagePage + 1)}>get old messages</button>}
             {dialogsMessages.map(item => <SingleMessage data={item} currentChatUserId={currentChatUserId} activeChatUserInfo={activeChatUserInfo} loggedUserPhoto={loggedUserPhoto}/>)}
             <div ref={messagesEndRef} />
             <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea} currentChatUserId={currentChatUserId} sendMessage={sendMessage}/>
