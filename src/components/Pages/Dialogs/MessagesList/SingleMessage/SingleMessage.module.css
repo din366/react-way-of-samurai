@@ -1,17 +1,22 @@
 .message {
   display: block;
-  padding: 10px 25px 10px 15px;
+  padding: 10px 15px 10px 15px;
   background-color: #fcf4ec;
   margin-bottom: 15px;
   border-radius: 10px;
   width: fit-content;
   min-width: 300px;
+  position: relative;
+  right: -40px;
+  max-width: calc(100% - 80px);
 }
 
 .messageUserInfo{
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  position: absolute;
+  left: -40px;
 }
 
 .messageUserInfo img {
@@ -26,4 +31,22 @@
 
 .sendDateWrapper{
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sendDateWrapper img {
+  max-width: 19px;
+}
+
+.sendDateWrapper .readStatus{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.myMessage{
+justify-self: end;
+right: 0;
 }

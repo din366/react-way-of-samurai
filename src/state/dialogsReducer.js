@@ -8,11 +8,7 @@ const SET_CURRENT_CHAT_USER_ID = 'dialogs/SET_CURRENT_CHAT_USER_ID';
 const UPDATE_CHAT_MESSAGES = 'dialogs/UPDATE_CHAT_MESSAGES';
 
 const initialState = {
-  dialogsMessages: [
-    {message: 'Hi'},
-    {message: 'How are you?'},
-    {message: 'Not bad!'}
-  ],
+  dialogsMessages: [],
   dialogsList: [],
   friendsList: [],
   currentChatUserId: null,
@@ -88,7 +84,7 @@ export const sendNewMessage = (userId, message) => async (dispatch) => {
   let res = await dialogsApi.sendMessage(userId, message);
   if (res.resultCode === 0) {
     let messages = await dialogsApi.getMessages(userId);
-    await dispatch(updateMessages(messages.items)); // ! много информации идет в initial state. Сделать перебор и оставить только нужное
+    await dispatch(updateMessages(messages.items));
   }
 }
 
