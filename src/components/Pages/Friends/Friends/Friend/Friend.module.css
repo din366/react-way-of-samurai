@@ -21,6 +21,7 @@
   position: relative;
   box-sizing: border-box;
   height: 150px;
+  overflow: hidden;
 }
 
 .imgWrapper{
@@ -95,4 +96,50 @@
   color: white;
   width: 80px;
   padding: 10px 0;
+}
+
+@media (max-width: 1200px) {
+  .friendBlockWrapper{
+    display: block;
+    height: auto;
+    max-width: 250px;
+    padding-bottom: 90px;
+    border-radius: 10px;
+  }
+
+  .buttonsWrapper{
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 15px;
+    padding: 0 15px;
+    transform: translateY(0);
+  }
+
+  .imgWrapper{
+    margin-right: 0;
+    max-width: 250px;
+    min-width: 150px;
+    max-height: 250px;
+    border-radius: 10px;
+  }
+
+  .infoBlock{
+    box-sizing: border-box;
+    text-align: center;
+    padding: 30px 15px 15px;
+  }
+
+  .statusBlockWrapper{
+    width: auto;
+    margin-bottom: 20px;
+  }
+
+  .sendMessageButton{
+    width: 100%;
+  }
+
+  .buttonsWrapper button{
+    width: 100%;
+  }
 }

@@ -15,3 +15,23 @@
 .preloaderWrapper{
 
 }
+
+
+@media (max-width: 992px) {
+  .appWrapper {
+    grid-template-areas:
+  "header header header"
+  "content content content";
+    grid-template-columns: 1fr;
+  }
+
+  .appWrapperContent {
+    margin-top: 60px;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

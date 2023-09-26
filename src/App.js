@@ -6,9 +6,10 @@ import HeaderContainer from "./components/Header/HeaderContainer/HeaderContainer
 import Login from "./components/Login/Login";
 import * as PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {initializeApp} from "./state/appReducer";
+import {initializeApp, switchBurgerMenuStatus} from "./state/appReducer";
 import Preloader from "./components/Other/Preloader/Preloader";
 import Page404 from "./components/Pages/page404/Page404";
+import {ModalButton} from "./components/Other/ModalButton/ModalButton";
 
 
 /* Lazy loaded components */
@@ -19,10 +20,15 @@ const FirstPage = lazy(()=> import ("./components/Pages/FirstPage/FirstPage"));
 const FriendsContainer = lazy(()=> import('./components/Pages/Friends/FriendsContainer'));
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalButtonIsActive: false,
+    };
+  }
   componentDidMount() {
     this.props.initializeApp();
   }
-
 
   render() {
     if (!this.props.inititialized) {
@@ -31,8 +37,8 @@ class App extends React.Component {
       return (
         <BrowserRouter>
           <div className={styles.appWrapper}>
-            <HeaderContainer/>
-            <Navbar state={this.props.store.getState().sidebarFriends} isAuth={this.props.isAuth}/>
+            <HeaderContainer />
+            <Navbar isAuth={this.props.isAuth} burgerMenuStatus={this.props.burgerMenuStatus} switchBurgerMenuStatus={this.props.switchBurgerMenuStatus}/>
             <div className={styles.appWrapperContent}>
               <Suspense fallback={<Preloader/>}>
                 <Routes>
@@ -58,9 +64,10 @@ App.propTypes = {store: PropTypes.any}
 
 const mapStateToProps = (state) => ({
   inititialized: state.app.initialized,
-  isAuth: state.auth.isAuth
+  isAuth: state.auth.isAuth,
+  burgerMenuStatus: state.app.burgerMenuStatus,
 })
 
 
 /*export default App;*/
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect(mapStateToProps, {initializeApp, switchBurgerMenuStatus})(App);

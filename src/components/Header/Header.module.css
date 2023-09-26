@@ -58,6 +58,7 @@
   color: white;
   font-weight: 300;
   transition: 0.3s all;
+  transform: translateY(-2px);
 }
 
 .loggedUserLink{
@@ -149,4 +150,22 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 992px) {
+  .header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    padding: 10px;
+  }
+
+  .logoutButton{
+    display: block;
+  }
+
+  .loggedUserLink{
+    margin-right: 10px;
+  }
 }

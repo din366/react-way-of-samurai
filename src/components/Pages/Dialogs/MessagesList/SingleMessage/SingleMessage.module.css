@@ -50,3 +50,9 @@
 justify-self: end;
 right: 0;
 }
+
+@media (max-width: 600px) {
+  .message {
+    min-width: 140px;
+  }
+}

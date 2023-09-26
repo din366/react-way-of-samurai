@@ -7,6 +7,7 @@
   right: 0;
   padding-right: 10px;
   padding-left: 10px;
+  box-sizing: border-box;
 }
 
 .AddMessageBlockTextarea{
@@ -45,4 +46,18 @@
 
 .addMessageBlockSendButton:disabled {
   background-color: gray;
+}
+
+@media (max-width: 700px) {
+  .AddMessageBlockTextarea{
+    width: calc(100% - 160px);
+    margin-right: 5px;
+  }
+
+  .addMessageBlockSendButton{
+    position: inherit;
+    bottom: auto;
+    right: auto;
+    transform: none;
+  }
 }

@@ -30,3 +30,11 @@
   height: 15px;
   cursor: pointer;
 }
+
+@media (max-width: 992px) {
+  .usersBlockWrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

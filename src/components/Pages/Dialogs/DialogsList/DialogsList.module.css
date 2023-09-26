@@ -6,6 +6,7 @@
   /*background-color: #f5f5f5;*/
   border-right: 1px solid #a3bbd2;
   /*border-left: 1px solid #a3bbd2;*/
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
@@ -39,4 +40,21 @@
   width: 100%;
   text-align: center;
   margin-bottom: 5px;
+}
+
+@media (max-width: 700px) {
+  .dialogsList {
+    position: fixed;
+    background-color: white;
+    z-index: 90;
+    left: -100%;
+    transition: 0.3s left;
+    min-height: auto;
+    max-height: none;
+    height: calc(100% - 60px);
+  }
+
+  .dialogsListShow {
+    left: 0;
+  }
 }

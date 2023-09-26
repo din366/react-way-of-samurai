@@ -108,3 +108,10 @@
 .buttonsWrapper .unfollowButton:hover {
   background-color: #b0b0b0;
 }
+
+@media (max-width: 992px) {
+  .userBlock {
+    height: auto;
+    padding-bottom:70px;
+  }
+}

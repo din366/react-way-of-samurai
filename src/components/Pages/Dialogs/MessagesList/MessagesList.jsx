@@ -5,8 +5,9 @@ import AddMessageBlock from "./AddMessageBlock/AddMessageBlock";
 import defaultUserPhoto from './../../../Other/user.png'
 import {formatDate} from "../../../../utils/formatDate";
 import {Link} from "react-router-dom";
+import backLogo from "./../../../Other/arrow-white.png"
 export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageArea, currentChatUserId, activeChatUserInfo,
-                               sendMessage, loggedUserPhoto, getNewPortionOldMessages, currentMessagePage}) => {
+                               sendMessage, loggedUserPhoto, getNewPortionOldMessages, currentMessagePage, toggleChatsMenu}) => {
   const messagesEndRef = useRef(null);
 
   let seenUserData = null;
@@ -27,6 +28,9 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
       {currentChatUserId && activeChatUserInfo ?
         <div>
           <div className={styles.userHeader}>
+            <div className={styles.backToChatsMenuButton} onClick={() => {toggleChatsMenu(true)}}>
+              <img src={backLogo} alt="back"/>
+            </div>
             <Link to={`/profile/${currentChatUserId}`}>
               <img src={activeChatUserInfo.photos && activeChatUserInfo.photos.large ? activeChatUserInfo.photos.large : defaultUserPhoto} alt="userPhoto"/>
             </Link>
@@ -37,7 +41,7 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
               <span className={styles.UserName}>last seen at {formatDate(seenUserData)}</span>
             </div>
           </div>
-          <div className={styles.messagesBlockWrapper}>
+          <div className={styles.messagesBlockWrapper} onClick={() => {toggleChatsMenu(false)}}>
             {dialogsMessages.length < 10 ? '' : <button className={styles.getOldMessageButton} onClick={() => getNewPortionOldMessages(currentChatUserId, currentMessagePage + 1)}>get old messages</button>}
             {dialogsMessages.map(item => <SingleMessage data={item} currentChatUserId={currentChatUserId} activeChatUserInfo={activeChatUserInfo} loggedUserPhoto={loggedUserPhoto}/>)}
             <div ref={messagesEndRef} />
@@ -48,6 +52,7 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
           <div>
             <span>No active dialogues</span>
             <span>select dialogue on the left</span>
+            <button className={styles.goChatButton} onClick={() => {toggleChatsMenu(true)}}>Select chat</button>
           </div>
         </div>
         }

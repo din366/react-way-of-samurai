@@ -47,6 +47,8 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  position: fixed;
+  z-index: 70;
 }
 
 .userHeader a {
@@ -93,4 +95,52 @@
 
 .getOldMessageButton:hover {
   background-color: #ff8f49;
+}
+
+.backToChatsMenuButton{
+  display: none;
+}
+
+.goChatButton{
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .backToChatsMenuButton{
+    display: block;
+    height: 30px;
+    width: 30px;
+    margin-right: 20px;
+  }
+
+  .backToChatsMenuButton img {
+    width: 100%;
+  }
+
+  .userHeader{
+    padding-left: 10px;
+  }
+
+  .messagesBlockWrapper {
+    padding: 70px 10px 40px 10px;
+    max-height: none;
+  }
+
+  .goChatButton{
+    display: block;
+    padding: 10px;
+    margin: 20px auto 0;
+    min-width: 100px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff8f49;
+    color: white;
+    transition: 0.3s all;
+  }
+
+  .messagesList form {
+    position: fixed;
+    display: block;
+    padding: 0 5px;
+  }
 }

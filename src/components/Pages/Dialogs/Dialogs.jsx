@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './Dialogs.module.css';
 import {DialogsList} from "./DialogsList/DialogsList";
 import {MessagesList} from "./MessagesList/MessagesList";
@@ -8,6 +8,8 @@ const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, loggedUs
                    currentChatUserId, setCurrentChatUserId, startChatting, activeChatUserInfo, sendMessage,
                    getNewPortionOldMessages, currentMessagePage}) => {
   let { userId } = useParams();
+
+  const [showChatsMenu, toggleChatsMenu] = useState(false);
 
   useEffect(() => {
     if ((!userId && !currentChatUserId) || (!userId && currentChatUserId)) {
@@ -22,7 +24,7 @@ const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, loggedUs
 
   return (
     <div className={styles.dialogs}>
-      <DialogsList dialogsList={dialogsList}/>
+      <DialogsList dialogsList={dialogsList} showChatsMenu={showChatsMenu} toggleChatsMenu={toggleChatsMenu}/>
       <MessagesList dialogsMessages={dialogsMessages}
                     addChatMessage={addChatMessage}
                     currentChatUserId={currentChatUserId}
@@ -31,6 +33,7 @@ const Dialogs = ({dialogsMessages, dialogsList, addChatMessage, isAuth, loggedUs
                     loggedUserPhoto={loggedUserPhoto}
                     getNewPortionOldMessages={getNewPortionOldMessages}
                     currentMessagePage={currentMessagePage}
+                    toggleChatsMenu={toggleChatsMenu}
                     />
     </div>
   );

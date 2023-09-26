@@ -1,7 +1,8 @@
 import styles from "./Paginator.module.css";
 import React from "react";
 
-const Paginator = ({totalCount, pageSize, currentPage, onPageChanged}) => {
+const Paginator = ({totalCount, pageSize, currentPage, onPageChanged, paginationWrapperFirstForCss}) => {
+  console.log(paginationWrapperFirstForCss)
 
   const pagesCount = Math.ceil(totalCount / pageSize);
   const pages = [];
@@ -25,12 +26,12 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChanged}) => {
     }
 
   return (
-    <div className={styles.paginationWrapper}>
-      {currentPage !== 1 ? <span onClick={() => {onPageChanged(1)}}>В начало</span> : ''}
+    <div className={`${styles.paginationWrapper} ${paginationWrapperFirstForCss ? styles.paginationWrapperFirst : ''}`}>
+      {currentPage !== 1 ? <span className={styles.firstPageButton} onClick={() => {onPageChanged(1)}}>В начало</span> : ''}
 
       {pages.map(pageNumber => <span className={currentPage === pageNumber && styles.selectedPage} onClick={() => {onPageChanged(pageNumber)}}>{pageNumber}</span>)}
 
-      {currentPage !== pagesCount ? <span onClick={() => {onPageChanged(pagesCount)}}>В конец</span> : ""}
+      {currentPage !== pagesCount ? <span className={styles.lastPageButton} onClick={() => {onPageChanged(pagesCount)}}>В конец</span> : ""}
 
     </div>
   );

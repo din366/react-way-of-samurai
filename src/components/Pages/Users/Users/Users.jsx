@@ -18,7 +18,8 @@ const Users = (props) => {
       <Paginator totalCount={props.totalUsersCount}
                  pageSize={props.pageSize}
                  currentPage={props.currentPage}
-                 onPageChanged={props.onPageChanged}/>
+                 onPageChanged={props.onPageChanged}
+                 paginationWrapperFirstForCss={true}/>
       {props.isAuth ?
         <div className={styles.OnlyFriendsBlockWrapper}>
           <label htmlFor='onlyFriendsInput'>Show friends</label>

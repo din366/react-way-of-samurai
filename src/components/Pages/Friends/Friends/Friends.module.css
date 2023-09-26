@@ -10,3 +10,11 @@
   padding: 20px;
 }
 
+
+@media (max-width: 1200px) {
+  .friendsBlockWrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
