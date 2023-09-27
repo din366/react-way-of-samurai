@@ -165,6 +165,10 @@
     display: block;
   }
 
+  .loginButton {
+    margin-right: 10px;
+  }
+
   .loggedUserLink{
     margin-right: 10px;
   }

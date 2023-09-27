@@ -43,7 +43,7 @@ export const MessagesList = ({dialogsMessages, addChatMessage, onChangeMessageAr
           </div>
           <div className={styles.messagesBlockWrapper} onClick={() => {toggleChatsMenu(false)}}>
             {dialogsMessages.length < 10 ? '' : <button className={styles.getOldMessageButton} onClick={() => getNewPortionOldMessages(currentChatUserId, currentMessagePage + 1)}>get old messages</button>}
-            {dialogsMessages.map(item => <SingleMessage data={item} currentChatUserId={currentChatUserId} activeChatUserInfo={activeChatUserInfo} loggedUserPhoto={loggedUserPhoto}/>)}
+            {dialogsMessages.map(item => <SingleMessage key={item.id} data={item} currentChatUserId={currentChatUserId} activeChatUserInfo={activeChatUserInfo} loggedUserPhoto={loggedUserPhoto}/>)}
             <div ref={messagesEndRef} />
             <AddMessageBlock addChatMessage={addChatMessage} onChangeMessageArea={onChangeMessageArea} currentChatUserId={currentChatUserId} sendMessage={sendMessage}/>
           </div>

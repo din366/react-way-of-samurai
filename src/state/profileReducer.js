@@ -84,18 +84,27 @@ export const setSendUserDataStatus = (status)=> dispatch => {
 
 /* for redux thunk */
 export const getProfile = (userId) => async (dispatch) => {
-  let data = await profileApi.getProfile(userId);
-  dispatch(setUserProfile(data));
+  try {
+    let data = await profileApi.getProfile(userId);
+    dispatch(setUserProfile(data));
+  } catch {
+    console.warn('user is not defined')
+  }
+
 };
 
 export const getStatus = (userId) => async (dispatch) => {
-  let data = await profileApi.getStatus(userId)
-  dispatch(setStatus(data.data));
+  try {
+    let data = await profileApi.getStatus(userId)
+    dispatch(setStatus(data.data));
+  } catch {
+    console.warn('status is not returned in request')
+  }
+
 }
 
 export const updateStatus = (status) => async (dispatch) => {
   let data = await profileApi.updateStatus(status);
-
   if (data.data.resultCode === 0) {
     dispatch(setStatus(status));
   }
@@ -103,7 +112,6 @@ export const updateStatus = (status) => async (dispatch) => {
 
 export const changePhoto = (file) => async (dispatch) => {
   let responce = await profileApi.savePhoto(file);
-
   if (responce.data.resultCode === 0) {
     dispatch(changePhotoSuccess(responce.data.data.photos));
     dispatch(updateHeaderUserPhoto(responce.data.data.photos.large));

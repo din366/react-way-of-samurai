@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 
 const FirstPage = ({isAuth}) => {
-  console.log(isAuth)
   return (
     <>
       <div className={styles.mainWrapper}>

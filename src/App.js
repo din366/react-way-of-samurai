@@ -9,8 +9,6 @@ import {connect} from "react-redux";
 import {initializeApp, switchBurgerMenuStatus} from "./state/appReducer";
 import Preloader from "./components/Other/Preloader/Preloader";
 import Page404 from "./components/Pages/page404/Page404";
-import {ModalButton} from "./components/Other/ModalButton/ModalButton";
-
 
 /* Lazy loaded components */
 const DialogsContainer = lazy(() => import("./components/Pages/Dialogs/DialogsContainer"));

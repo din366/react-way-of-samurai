@@ -3,8 +3,6 @@ import styles from './AddMessageBlock.module.css';
 import {Field, Form, Formik} from "formik";
 
 const AddMessageBlock = ({currentChatUserId, sendMessage}) => {
-  console.log(sendMessage)
-
   return (
     <Formik
       initialValues={{

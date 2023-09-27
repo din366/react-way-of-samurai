@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  position: fixed;
+  /*position: fixed;*/
   z-index: 70;
 }
 
@@ -119,6 +119,7 @@
 
   .userHeader{
     padding-left: 10px;
+    position: fixed;
   }
 
   .messagesBlockWrapper {

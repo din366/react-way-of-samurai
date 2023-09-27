@@ -16,7 +16,7 @@ const Friends = (props) => {
 
       <div className={styles.friendsBlockWrapper}>
         {props.users.map(user =>
-          <Friend user={user} followingInProgress={props.followingInProgress} unfollow={props.unfollow}
+          <Friend key={user.id} user={user} followingInProgress={props.followingInProgress} unfollow={props.unfollow}
                 follow={props.follow} isAuth={props.isAuth} loggedUserId={props.loggedUserId} onPageChanged={props.onPageChanged}/>
         )}
       </div>

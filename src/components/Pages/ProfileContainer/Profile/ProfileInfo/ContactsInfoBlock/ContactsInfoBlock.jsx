@@ -7,7 +7,7 @@ const ContactsInfoBlock = ({fullContactsArray}) => {
     let createdContactBlock = [];
     sortData.map((item) => {
       if (item[1]) {
-        createdContactBlock.push(<ContactBlock contactInfo={item} />)
+        createdContactBlock.push(<ContactBlock contactInfo={item} key={item[0]}/>)
       };
     });
 

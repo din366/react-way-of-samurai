@@ -31,7 +31,7 @@ const Users = (props) => {
 
       <div className={styles.usersBlockWrapper}>
         {props.users.map(user =>
-          <User user={user} followingInProgress={props.followingInProgress} unfollow={props.unfollow}
+          <User key={user.id} user={user} followingInProgress={props.followingInProgress} unfollow={props.unfollow}
                 follow={props.follow} isAuth={props.isAuth} loggedUserId={props.loggedUserId}/>
         )}
       </div>

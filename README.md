@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+<h1 style="text-align: center;">Samurai social network - социальная сеть на базе api с сайта https://social-network.samuraijs.com
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/samurai-social-network-mainimage.png" alt="project image">
 
-## Available Scripts
+<a href="https://social-network-samurai.vercel.app" style="text-align: center;">Развернутое приложение на Vercel</a>
 
-In the project directory, you can run:
+:warning:
+Из-за отсутствия в API при запросах возвращаемого токена не проходит 
+авторизация пользователей на iOS, macOS, ipadOS.
 
-### `npm start`
+## Что может приложение:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<ol>
+  <li>Просмотр всех зарегистрированных пользователей, добавление в друзья.</li>
+  <li>Просмотр профиля пользователей.</li>
+  <li>Редактирование своего профиля с дальнейшей передачей данных в api: 
+изменение фото, статус пользователя, блок "обо мне", job статус, контакты.</li>
+  <li>Возможность общаться в чате с друзьями (отправка сообщений, получение сообщений, наличие даты
+отправки сообщений, время с последнего захода пользователя). Все данные проходят через API.</li>
+  <li>Страница логина с необходимостью ввода капчи при нескольких неправильных попытках.</li>
+</ol>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Используемые подходы и инструмены:
 
-### `npm test`
+<ol>
+  <li>React</li>
+  <li>Redux</li>
+  <li>Formik</li>
+  <li>Axios</li>
+  <li>Reselect</li>
+  <li>Классовые контейнерные компоненты для связью со стором и функциональные компоненты для рендера приложения.</li>
+  <li>Отдельно сформированный объект с асинхронными запросами api.js</li>
+  <li>Lazy loaded main components</li>
+</ol>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Подробнее о реализации проекта:
 
+<h3 style="text-decoration: underline">Страница логина:</h3>
+
+<p>На странице логина присутствует fast login при помощи тестового аккаунта, а также возможность залогиниться в свой личный аккаунт.
+Форма логина сформирована при помощи пакета Formik. Настроена валидация полей.</p>
+<p>При оправке неверных данных логина или пароля на сервер появляется информация об ошибочно введенных данных.
+При превышении количества попыток появляется капча для исключения возможности подбора пароля.</p>
+<p>В хедере после логина появляется иконка пользователя с возможностью логаута.</p>
+
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/incorrect-login.gif" alt="project image">
+
+<h3 style="text-decoration: underline">Страница профиля (для авторизованных пользователей):</h3>
+
+<p>Если страница профиля является профилем текущего пользователя, то помимо наличия личных данных
+есть возможность изменять статус пользователя, фотографию, а также все контактные данные в отдельном модальном окне.</p>
+<p>При просмотре чужого профиля кнопки изменения данных отсутствуют.</p>
+
+<p>Изменение личных данных производится в отдельном модальном окне с валидацией полей контактов.</p>
+
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/profile.gif" alt="project image">
+
+<h3 style="text-decoration: underline">Страница друзей (для авторизованных пользователей):</h3>
+
+<p>На данной странице представлены пользователи, которые были добавлены в друзья.
+Каждого пользователя можно убрать из друзей, а также одной кнопкой перейти в чат с ним.
+Также на странице присутствует пагинация.</p>
+
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/friends.gif" alt="project image">
+
+<h3 style="text-decoration: underline">Страница личных чатов (для авторизованных пользователей):</h3>
+
+<p>Представлены все активные чаты. При открытии чата отображается логин, фото и последняя активность собеседника.</p>
+<p>Реализована отправка сообщений. У каждого сообщения отображается время отправки. 
+В зависимости от давности отправки может отображаться как дата, так и сколько секунд/минут назад было отправлено сообщение.</p>
+
+<p>Последовательность сообщений чата идет снизу вверх, а также автоматически прокручивается вниз при загрузке. Реализована подгрузка предыдущих сообщений по нажатию на кнопку.</p>
+
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/messages.gif" alt="project image">
+
+<h3 style="text-decoration: underline">Страница всех пользователей:</h3>
+
+<p>На странице представлены все пользователи, зарегистрированные в сервисе.
+Из всего списка можно показать только друзей, а также подписаться на любого пользователя,
+т.е. добавить в друзья и перейти в его профиль.
+Также на странице присутствует пагинация.</p>
+
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/users.gif" alt="project image">
+
+<h3 style="text-decoration: underline">Мобильная верстка:</h3>
+
+<p>Для мобильных устройств реализован удобный и интуитивно понятный интерфейс. Наличие бургер-меню.
+В сообщениях возврат к диалогам реализован в стиле telegram - нажатием на кнопку назад в текущем чате.</p>
+
+<img style="text-align: center; max-width: 600px;"
+src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/mobile.gif" alt="project image">
+
+
+<p>Для работы с приложением:</p>
+
+## сборка приложения
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- сборка и оптимизация приложения в папке build для деплоя.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## запуск приложения
+### `npm start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- запуск осуществляется по адресу [http://localhost:3000](http://localhost:3000)

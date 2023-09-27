@@ -80,10 +80,15 @@ export const createNewChat = (userId) => async (dispatch) => {
   }
 }
 export const startChatting = (userId) => async (dispatch) => {
-  let res = await dialogsApi.getMessages(userId);
+  try {
+    let res = await dialogsApi.getMessages(userId);
     await dispatch(updateMessages(res.items));
     await dispatch(createNewChat(userId));
     await dispatch(getAllDialogs());
+  } catch {
+    console.warn('User is not defined')
+  }
+
 }
 
 export const getNewPortionOldMessages = (userId, page) => async (dispatch) => {
