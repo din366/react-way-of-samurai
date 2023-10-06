@@ -94,9 +94,9 @@ src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-n
 <p>Для мобильных устройств реализован удобный и интуитивно понятный интерфейс. Наличие бургер-меню.
 В сообщениях возврат к диалогам реализован в стиле telegram - нажатием на кнопку назад в текущем чате.</p>
 
-<img style="text-align: center; max-width: 600px;"
-src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/mobile.gif" alt="project image">
-
+<p align="center">
+  <img style="text-align: center; max-width: 600px;" src="https://github.com/din366/images/blob/main/readme%20images/samurai-social-network/mobile.gif" alt="project image">
+</p>
 
 <p>Для работы с приложением:</p>
 
